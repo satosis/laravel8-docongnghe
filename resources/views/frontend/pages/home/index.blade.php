@@ -70,7 +70,9 @@
             </a>
 
         </div>
-        <div class="cb"></div>
+        @if ($event2)
+            @include('frontend.pages.home.include._inc_flash_sale')
+        @endif
 
         <div class="product-three">
             <div class="top">
