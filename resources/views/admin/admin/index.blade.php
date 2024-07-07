@@ -2,10 +2,10 @@
 @section('content')
     <!-- Nội dung Header (Page header) -->
     <section class="content-header">
-        <h1>Quản lý Admin</h1>
+        <h1>Quản lý quản trị viên</h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
-            <li><a href="{{  route('admin.account_admin.index') }}"> Admin</a></li>
+            <li><a href="{{  route('admin.account_admin.index') }}"> Quản trị viên</a></li>
             <li class="active"> Danh sách</li>
         </ol>
     </section>
@@ -26,9 +26,9 @@
                                     <th style="width: 10px">ID</th>
                                     <th>Tên</th>
                                     <th>Email</th>
-                                    <th>SDT</th>
-                                    <th>Level</th>
-                                    <th>Role</th>
+                                    <th>Số điện thoại</th>
+                                    <th>Chức vụ</th>
+                                    <th>Nhóm quyền</th>
                                     <th>Thời gian</th>
                                     <th>Hành động</th>
                                 </tr>

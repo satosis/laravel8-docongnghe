@@ -2,12 +2,12 @@
 @section('content')
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>Roles</h1>
+        <h1>Nhóm quyền</h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Account</a></li>
-            <li><a href="#">Role</a></li>
-            <li class="active">Create</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+            <li><a href="#">Tài khoản</a></li>
+            <li><a href="#">Nhóm quyền</a></li>
+            <li class="active">Cập nhật</li>
         </ol>
     </section>
     <!-- Main content -->
@@ -23,7 +23,7 @@
                         <div class="col-sm-12">
                             <div class="box-body">
                                 <div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
-                                    <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
+                                    <label for="inputEmail3" class="col-sm-2 control-label">Tên quyền</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" name="name"
                                                placeholder="Super Admin" value="{{ $role->name }}">
@@ -34,14 +34,14 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">Guard</label>
+                                    <label for="inputPassword3" class="col-sm-2 control-label">Vai trò</label>
                                     <div class="col-sm-9">
                                         <input type="text" class="form-control" name="guard_name" value="{{ $role->guard_name }}"
                                                placeholder="admins">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputPassword3" class="col-sm-2 control-label">Description</label>
+                                    <label for="inputPassword3" class="col-sm-2 control-label">Mô tả</label>
                                     <div class="col-sm-9">
                                     <textarea class="form-control" id="" cols="30" name="description"
                                               placeholder="Mô tả về chức năng của role ..." rows="5"></textarea>
@@ -72,7 +72,7 @@
                         <!-- /.box-body -->
                         <div class="clearfix"></div>
                         <div class="box-footer text-center">
-                            <a href="{{ route('admin.role.list') }}" class="btn btn-default"><i class="fa fa-arrow-left"></i> Cancel</a>
+                            <a href="{{ route('admin.role.list') }}" class="btn btn-default"><i class="fa fa-arrow-left"></i> Quay lại</a>
                             <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Thêm mới</button>
                         </div>
                         <div class="col-sm-12">

@@ -4,7 +4,7 @@
     <section class="content-header">
         <h1>Thêm mới đơn nhập hàng</h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
             <li><a href="{{  route('admin.invoice_entered.index') }}"> Admin</a></li>
         </ol>
     </section>

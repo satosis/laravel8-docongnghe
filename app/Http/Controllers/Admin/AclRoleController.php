@@ -11,9 +11,13 @@ use Illuminate\Support\Str;
 
 class AclRoleController extends Controller
 {
-	public function index()
+	public function index(Request $request)
 	{
+		$id = $request->id;
 		$roles    = Role::all();
+		if ($id) {
+			$roles = Role::where('id',$id)->get();
+		}
 		$viewData = [
 			'roles' => $roles
 		];

@@ -154,7 +154,7 @@
     </div>
     <div class="col-sm-12 clearfix">
         <div class="box-footer text-center">
-            <a href="{{ route('admin.product.index') }}" class="btn btn-default"><i class="fa fa-arrow-left"></i> Cancel</a>
+            <a href="{{ route('admin.product.index') }}" class="btn btn-default"><i class="fa fa-arrow-left"></i> Quay lại</a>
             <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> {{ isset($product) ? "Cập nhật" : "Thêm mới" }} </button> </div>
     </div>
 </form>

@@ -10,6 +10,9 @@ use App\Models\Slide;
 
 class AdminSlideController extends Controller
 {
+    public function __construct() {
+        cache()->flush();
+    }
     public function index()
     {
 		if (!check_admin()) return redirect()->route('get.admin.index');
@@ -29,9 +32,9 @@ class AdminSlideController extends Controller
 
         if ($request->sd_avatar) {
             $image = upload_image('sd_avatar');
-            if ($image['code'] == 1) 
+            if ($image['code'] == 1)
                 $data['sd_image'] = $image['name'];
-        } 
+        }
 
         $id = Slide::insertGetId($data);
         return redirect()->back();
@@ -50,9 +53,9 @@ class AdminSlideController extends Controller
 
         if ($request->sd_avatar) {
             $image = upload_image('sd_avatar');
-            if ($image['code'] == 1) 
+            if ($image['code'] == 1)
                 $data['sd_image'] = $image['name'];
-        } 
+        }
 
         $update = $slide->update($data);
         return redirect()->back();

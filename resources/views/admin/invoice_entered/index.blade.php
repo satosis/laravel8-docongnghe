@@ -4,9 +4,9 @@
     <section class="content-header">
         <h1>Quản lý nhập hàng</h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
             <li><a href="{{  route('admin.invoice_entered.index') }}"> NCC</a></li>
-            <li class="active"> List </li>
+            <li class="active"> Danh sách </li>
         </ol>
     </section>
     <!-- Main content -->
@@ -32,7 +32,7 @@
                                     <th>SL còn</th>
                                     <th>Đã thanh toán</th>
                                     <th>Dư nợ</th>
-                                    <th>Action</th>
+                                    <th>Hành động</th>
                                 </tr>
                             </tbody>
                             @if (isset($invoiceEntered))
@@ -53,8 +53,8 @@
                                             <td>{{ number_format($item->ie_the_advance,0,',','.') }} VNĐ</td>
                                             <td>{{ number_format($item->ie_total_money - $item->ie_the_advance,0,',','.') }} VNĐ</td>
                                             <td>
-                                                <a href="{{ route('admin.invoice_entered.update', $item->id) }}" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> Edit</a>
-{{--                                                <a href="{{  route('admin.invoice_entered.delete', $item->id) }}" class="btn btn-xs btn-danger js-delete-confirm"><i class="fa fa-trash"></i> Delete</a>--}}
+                                                <a href="{{ route('admin.invoice_entered.update', $item->id) }}" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> Cập nhật</a>
+{{--                                                <a href="{{  route('admin.invoice_entered.delete', $item->id) }}" class="btn btn-xs btn-danger js-delete-confirm"><i class="fa fa-trash"></i> Xóa</a>--}}
                                             </td>
                                         </tr>
                                     @endforeach

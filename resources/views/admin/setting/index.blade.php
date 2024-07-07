@@ -19,13 +19,13 @@
 						@csrf
 						<div class="col-sm-8">
 							<div class="form-group {{ $errors->first('sd_title') ? 'has-error' : '' }}">
-								<label for="name">Title <span class="text-danger">(*)</span></label>
+								<label for="name"Tiêu đềspan class="text-danger">(*)</span></label>
 								<input type="color" class="form-control"  name="color-top" value="#ff0000"><br><br>
 							</div>
 						</div>
 						<div class="col-sm-8">
 							<div class="form-group {{ $errors->first('sd_link') ? 'has-error' : '' }}">
-								<label for="name">Link <span class="text-danger">(*)</span></label>
+								<label for="name">Đường dẫn<span class="text-danger">(*)</span></label>
 								<input type="text" class="form-control" name="sd_link"  placeholder="Link ...">
 								@if ($errors->first('sd_link'))
 									<span class="text-danger">{{ $errors->first('sd_link') }}</span>

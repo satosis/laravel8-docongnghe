@@ -4,9 +4,9 @@
     <section class="content-header">
         <h1>Quản lý Event</h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
             <li><a href="{{  route('admin.event.index') }}"> Event</a></li>
-            <li class="active"> List </li>
+            <li class="active"> Danh sách </li>
         </ol>
     </section>
     <!-- Main content -->
@@ -24,11 +24,11 @@
                                 <tr>
                                     <th style="width: 10px">STT</th>
                                     <th style="width: 10px">ID</th>
-                                    <th>Name</th>
-                                    <th>Link</th>
-                                    <th>Banner</th>
-                                    <th>Time</th>
-                                    <th>Action</th>
+                                    <th>Tiêu đề</th>
+                                    <th>Đường dẫn</th>
+                                    <th>Hình ảnh</th>
+                                    <th>Thời gian tạo</th>
+                                    <th>Hành động</th>
                                 </tr>
                                 @if (isset($events))
                                     @foreach($events as $key => $event)
@@ -42,8 +42,8 @@
                                             </td>
                                             <td>{{  $event->created_at }}</td>
                                             <td style="width: 135px;">
-                                                <a href="{{ route('admin.event.update', $event->id) }}" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> Edit</a>
-                                                <a href="{{  route('admin.event.delete', $event->id) }}" class="btn btn-xs btn-danger js-delete-confirm"><i class="fa fa-trash"></i> Delete</a>
+                                                <a href="{{ route('admin.event.update', $event->id) }}" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> Cập nhật</a>
+                                                <a href="{{  route('admin.event.delete', $event->id) }}" class="btn btn-xs btn-danger js-delete-confirm"><i class="fa fa-trash"></i> Xóa</a>
                                             </td>
                                         </tr>
                                     @endforeach

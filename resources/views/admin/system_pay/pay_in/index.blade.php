@@ -4,9 +4,9 @@
     <section class="content-header">
         <h1>Quản lý nạp tiền</h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="{{  route('admin.system_pay_in.index') }}"> User</a></li>
-            <li class="active"> index </li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+            <li><a href="{{  route('admin.system_pay_in.index') }}"> Nạp tiền</a></li>
+            <li class="active"> Danh sách </li>
         </ol>
     </section>
     <!-- Main content -->
@@ -19,7 +19,7 @@
                         <input type="text" class="form-control" value="{{ Request::get('id') }}" name="id" placeholder="ID">
                         <input type="text" class="form-control" value="{{ Request::get('name') }}" name="name" placeholder="Name ...">
 
-                        <button type="submit" class="btn btn-success"><i class="fa fa-search"></i> Search</button>
+                        <button type="submit" class="btn btn-success"><i class="fa fa-search"></i> Tìm kiếm</button>
                         <button type="submit" name="export" value="true" class="btn btn-info">
                             <i class="fa fa-save"></i> Export
                         </button>
@@ -37,7 +37,7 @@
                                 <th>Money</th>
                                 <th>Admin</th>
                                 <th>Time</th>
-                                <th>Action</th>
+                                <th>Hành động</th>
                             </tr>
                             @foreach($payIns as $pay)
                                 <tr>
@@ -55,8 +55,8 @@
                                     <td>{{  $pay->admin->name ?? "[N\A]" }}</td>
                                     <td>{{  $pay->created_at }}</td>
                                     <td>
-                                        <a href="{{ route('admin.system_pay_in.update', $pay->id) }}" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> Edit</a>
-                                        <a href="{{  route('admin.system_pay_in.delete', $pay->id) }}" class="btn btn-xs btn-danger js-delete-confirm"><i class="fa fa-trash"></i> Delete</a>
+                                        <a href="{{ route('admin.system_pay_in.update', $pay->id) }}" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> Cập nhật</a>
+                                        <a href="{{  route('admin.system_pay_in.delete', $pay->id) }}" class="btn btn-xs btn-danger js-delete-confirm"><i class="fa fa-trash"></i> Xóa</a>
                                     </td>
                                 </tr>
                             @endforeach

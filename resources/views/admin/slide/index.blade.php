@@ -4,9 +4,9 @@
     <section class="content-header">
         <h1>Quản lý Slide</h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
             <li><a href="{{  route('admin.slide.index') }}"> Slide</a></li>
-            <li class="active"> List </li>
+            <li class="active"> Danh sách </li>
         </ol>
     </section>
     <!-- Main content -->
@@ -24,12 +24,12 @@
                                 <tr>
                                     <th style="width: 10px">STT</th>
                                     <th style="width: 10px">ID</th>
-                                    <th>Name</th>
-                                    <th>Status</th>
-                                    <th>Sort</th>
+                                    <th>Tên</th>
+                                    <th>Trạng thái</th>
+                                    <th>Số thứ tự</th>
                                     <th>Target</th>
-                                    <th>Time</th>
-                                    <th>Action</th>
+                                    <th>Thời gian tạo</th>
+                                    <th>Hành động</th>
                                 </tr>
                                 @if (isset($slides))
                                     @foreach($slides as $key => $slide)
@@ -40,16 +40,16 @@
                                             <td>
                                                 @if ($slide->sd_active == 1)
                                                     <a href="{{ route('admin.slide.active', $slide->id) }}" class="label label-info">Show</a>
-                                                @else 
+                                                @else
                                                     <a href="{{ route('admin.slide.active', $slide->id) }}" class="label label-default">Hide</a>
                                                 @endif
                                             </td>
                                             <td>{{  $slide->sd_sort }}</td>
-                                            <td>{{  $slide->sd_target }}</td>
+                                            <td>{{  $slide->target }}</td>
                                             <td>{{  $slide->created_at }}</td>
                                             <td>
-                                                <a href="{{ route('admin.slide.update', $slide->id) }}" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> Edit</a>
-                                                <a href="{{  route('admin.slide.delete', $slide->id) }}" class="btn btn-xs btn-danger js-delete-confirm"><i class="fa fa-trash"></i> Delete</a>
+                                                <a href="{{ route('admin.slide.update', $slide->id) }}" class="btn btn-xs btn-primary"><i class="fa fa-pencil"></i> Cập nhật</a>
+                                                <a href="{{  route('admin.slide.delete', $slide->id) }}" class="btn btn-xs btn-danger js-delete-confirm"><i class="fa fa-trash"></i> Xóa</a>
                                             </td>
                                         </tr>
                                     @endforeach

@@ -2,12 +2,12 @@
 @section('content')
     <!-- Content Header (Page header) -->
     <section class="content-header">
-        <h1>Permission</h1>
+        <h1>Quyền</h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="#">Account</a></li>
-            <li><a href="#">Permission</a></li>
-            <li class="active">Create</li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+            <li><a href="#">Tài khoản</a></li>
+            <li><a href="#">Quyền</a></li>
+            <li class="active">Thêm mới</li>
         </ol>
     </section>
     <!-- Main content -->
@@ -59,7 +59,7 @@
                         </div>
                         <!-- /.box-body -->
                         <div class="box-footer text-center">
-                            <a href="{{ route('admin.permission.list') }}" class="btn btn-default"><i class="fa fa-arrow-left"></i> Cancel</a>
+                            <a href="{{ route('admin.permission.list') }}" class="btn btn-default"><i class="fa fa-arrow-left"></i> Quay lại</a>
                             <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> Thêm mới</button>
                         </div>
                         <!-- /.box-footer -->

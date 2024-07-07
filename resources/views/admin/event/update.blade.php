@@ -4,9 +4,9 @@
     <section class="content-header">
         <h1>Cập nhật event</h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
             <li><a href="{{  route('admin.event.index') }}"> Event</a></li>
-            <li class="active"> Create</a></li>
+            <li class="active"> Cập nhật</a></li>
         </ol>
     </section>
     <!-- Main content -->
@@ -19,7 +19,7 @@
                          @csrf
                         <div class="col-sm-8">
                             <div class="form-group {{ $errors->first('e_name') ? 'has-error' : '' }}">
-                                <label for="name">Title <span class="text-danger">(*)</span></label>
+                                <label for="name">Tiêu đề</label><span class="text-danger">(*)</span></label>
                                 <input type="text" class="form-control" name="e_name" value="{{ $event->e_name }}"  placeholder="Name ...">
                                 @if ($errors->first('e_name'))
                                     <span class="text-danger">{{ $errors->first('e_name') }}</span>
@@ -28,7 +28,7 @@
                         </div>
                         <div class="col-sm-8">
                             <div class="form-group {{ $errors->first('e_link') ? 'has-error' : '' }}">
-                                <label for="name">Link <span class="text-danger">(*)</span></label>
+                                <label for="name">Đường dẫn<span class="text-danger">(*)</span></label>
                                 <input type="text" class="form-control" name="e_link"  value="{{ $event->e_link }}" placeholder="Link ...">
                                 @if ($errors->first('e_link'))
                                     <span class="text-danger">{{ $errors->first('e_link') }}</span>
@@ -39,36 +39,36 @@
                             <div class="row">
                                 <div class="col-sm-2">
                                     <div class="form-group ">
-                                        <label for="name">Home 1 </label>
+                                        <label for="name">Trang chủ 1 </label>
                                         <input type="checkbox" name="e_position_1" {{ $event->e_position_1 ?? 0 == 1 ? "checked='checked'" : "" }} value="1">
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="form-group ">
-                                        <label for="name">Home 2 </label>
+                                        <label for="name">Trang chủ 2 </label>
                                         <input type="checkbox" name="e_position_2" {{ $event->e_position_2 ?? 0 == 1 ? "checked='checked'" : "" }} value="1">
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="form-group ">
-                                        <label for="name">Home 3 </label>
+                                        <label for="name">Trang chủ 3 </label>
                                         <input type="checkbox" name="e_position_3" {{ $event->e_position_3 ?? 0 == 1 ? "checked='checked'" : "" }} value="1">
                                     </div>
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="form-group ">
-                                        <label for="name">Home 4 </label>
+                                        <label for="name">Trang chủ 4 </label>
                                         <input type="checkbox" name="e_position_4" {{ $event->e_position_4 ?? 0 == 1 ? "checked='checked'" : "" }} value="1">
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-sm-8">
-                            
-                            <h3 class="box-title">Banner</h3>
+
+                            <h3 class="box-title">Hình ảnh</h3>
                             <div class="box-body block-images">
                                 <div style="margin-bottom: 10px"> <img src="{{ pare_url_file($event->e_banner) }}" onerror="this.onerror=null;this.src='/images/no-image.jpg';" alt="" class="img-thumbnail" style="width: 100%;height: 250px;"> </div>
-                                <div style="position:relative;"> <a class="btn btn-primary" href="javascript:;"> Choose File... <input type="file" style="position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:&quot;progid:DXImageTransform.Microsoft.Alpha(Opacity=0)&quot;;opacity:0;background-color:transparent;color:transparent;" name="e_banner" size="40" class="js-upload"> </a> &nbsp; <span class="label label-info" id="upload-file-info"></span> </div>
+                                <div style="position:relative;"> <a class="btn btn-primary" href="javascript:;"> Chọn ảnh... <input type="file" style="position:absolute;z-index:2;top:0;left:0;filter: alpha(opacity=0);-ms-filter:&quot;progid:DXImageTransform.Microsoft.Alpha(Opacity=0)&quot;;opacity:0;background-color:transparent;color:transparent;" name="e_banner" size="40" class="js-upload"> </a> &nbsp; <span class="label label-info" id="upload-file-info"></span> </div>
                             </div>
                         </div>
                         <div class="col-sm-12">
@@ -78,7 +78,7 @@
                                 <button type="submit" class="btn btn-success">Lưu dữ liệu <i class="fa fa-save"></i></button>
                             </div>
                         </div>
-                    </form>  
+                    </form>
                 </div>
             </div>
             <!-- /.box -->

@@ -2,10 +2,10 @@
 @section('content')
     <!-- Nội dung Header (Page header) -->
     <section class="content-header">
-        <h1>Quản lý các page tĩnh</h1>
+        <h1>Quản lý các trang tĩnh</h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
-            <li><a href="{{  route('admin.static.index') }}"> Static</a></li>
+            <li><a href="{{  route('admin.static.index') }}"> Trang tĩnh</a></li>
             <li class="active"> Danh sách</li>
         </ol>
     </section>

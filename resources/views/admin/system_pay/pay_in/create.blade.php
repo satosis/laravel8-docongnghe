@@ -4,9 +4,9 @@
     <section class="content-header">
         <h1>Quản lý nạp tiền</h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-            <li><a href="{{  route('admin.system_pay_in.index') }}"> User</a></li>
-            <li class="active"> Create </li>
+            <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+            <li><a href="{{  route('admin.system_pay_in.index') }}"> Nạp tiền</a></li>
+            <li class="active"> Thêm mới </li>
         </ol>
     </section>
     <!-- Main content -->

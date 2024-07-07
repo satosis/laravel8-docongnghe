@@ -2,10 +2,10 @@
 @section('content')
     <!-- Nội dung Header (Page header) -->
     <section class="content-header">
-        <h1>Cập nhật page tĩnh</h1>
+        <h1>Cập nhật trang tĩnh</h1>
         <ol class="breadcrumb">
             <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
-            <li><a href="{{  route('admin.static.index') }}"> Static</a></li>
+            <li><a href="{{  route('admin.static.index') }}"> Trang tĩnh</a></li>
             <li class="active">Cập nhật</a></li>
         </ol>
     </section>
@@ -19,7 +19,7 @@
                          @csrf
                         <div class="col-sm-8">
                             <div class="form-group {{ $errors->first('s_title') ? 'has-error' : '' }}">
-                                <label for="name">Title <span class="text-danger">(*)</span></label>
+                                <label for="name">Tiêu đề <span class="text-danger">(*)</span></label>
                                 <input type="text" class="form-control" name="s_title"  placeholder="Title ..." value="{{ $static->s_title }}">
                                 @if ($errors->first('s_title'))
                                     <span class="text-danger">{{ $errors->first('s_title') }}</span>
@@ -28,7 +28,7 @@
                         </div>
                         <div class="col-sm-8">
                             <div class="form-group {{ $errors->first('e_link') ? 'has-error' : '' }}">
-                                <label for="name">Loại Page <span class="text-danger">(*)</span></label>
+                                <label for="name">Loại trang <span class="text-danger">(*)</span></label>
                                 <select class="form-control" name="s_type">
                                     @foreach($type as $key => $item)
                                         <option value="{{  $key }}" {{ $static->s_type == $key ? "selected='selected'" : "" }}>{{  $item }}</option>

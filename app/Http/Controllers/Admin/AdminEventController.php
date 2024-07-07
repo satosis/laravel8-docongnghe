@@ -10,12 +10,11 @@ use Illuminate\Support\Facades\Cache;
 
 class AdminEventController extends Controller
 {
+    public function __construct() {
+        cache()->flush();
+    }
     public function index()
     {
-		Cache::forget('HOME.EVENT_1');
-		Cache::forget('HOME.EVENT_2');
-		Cache::forget('HOME.EVENT_3');
-
 		if (!check_admin()) return redirect()->route('get.admin.index');
         $events = Event::get();
 
@@ -48,13 +47,13 @@ class AdminEventController extends Controller
         if ($request->e_position_4) {
             $data['e_position_4'] = 1;
         }
-        
+
 
         if ($request->e_banner) {
             $image = upload_image('e_banner');
-            if ($image['code'] == 1) 
+            if ($image['code'] == 1)
                 $data['e_banner'] = $image['name'];
-        } 
+        }
 
         $id = Event::insertGetId($data);
         return redirect()->back();
@@ -96,13 +95,13 @@ class AdminEventController extends Controller
         }else{
             $data['e_position_4'] = 0;
         }
-        
+
 
         if ($request->e_banner) {
             $image = upload_image('e_banner');
-            if ($image['code'] == 1) 
+            if ($image['code'] == 1)
                 $data['e_banner'] = $image['name'];
-        } 
+        }
 
         $update = $event->update($data);
         return redirect()->back();
