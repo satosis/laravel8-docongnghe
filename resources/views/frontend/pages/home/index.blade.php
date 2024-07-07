@@ -26,21 +26,13 @@
                     <div id="content-slide">
                         <div id="slider">
                             <div class="imageSlide js-banner owl-carousel">
-                                <div>
-                                    <a href="javascript:;" title="slide">
-                                        <img alt="Đồ án tốt nghiệp" src="{{ pare_url_file('2024-04-21__banner-tgnh-thang3.jpg') }}"  style="max-width: 100%;height: 300px;" class="" />
-                                    </a>
-                                </div>
-                                <div>
-                                    <a href="javascript:;" title="slide">
-                                        <img alt="Đồ án tốt nghiệp" src="{{ pare_url_file('2024-04-21__queencard-2048x928.jpg') }}"  style="max-width: 100%;height: 300px;" class="" />
-                                    </a>
-                                </div>
-                                <div>
-                                    <a href="javascript:;" title="slide">
-                                        <img alt="Đồ án tốt nghiệp" src="{{ pare_url_file('2024-04-21__banner-web-bgxshopee.png') }}"  style="max-width: 100%;height: 300px;" class="" />
-                                    </a>
-                                </div>
+                                @foreach($slides as $item)
+                                    <div>
+                                        <a href="{{ $item->sd_link }}" title="{{ $item->sd_title }}">
+                                            <img alt="Đồ án tốt nghiệp" src="{{ pare_url_file($item->sd_image) }}"  style="max-width: 100%;height: 300px;" class="" />
+                                        </a>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

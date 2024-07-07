@@ -15,7 +15,7 @@ class AdminStatisticalController extends Controller
 	public function index()
     {
 //    	if (!check_admin()) return redirect()->route('get.admin.index');
-
+        $month = request()->get('thang') ?? date('m');
         //Tổng hđơn hàng
         $totalTransactions = \DB::table('transactions')->select('id')->count();
 
@@ -36,6 +36,7 @@ class AdminStatisticalController extends Controller
 
         // Doanh thu ngày
 		$totalMoneyDay = Transaction::whereDay('created_at',date('d'))
+            ->whereMonth('created_at',$month)
 			->where('tst_status',Transaction::STATUS_SUCCESS)
 			->sum('tst_total_money');
 
@@ -46,7 +47,7 @@ class AdminStatisticalController extends Controller
 			->sum('tst_total_money');
 
 		// doanh thu thag
-		$totalMoneyMonth = Transaction::whereMonth('created_at',date('m'))
+		$totalMoneyMonth = Transaction::whereMonth('created_at',$month)
 			->where('tst_status',Transaction::STATUS_SUCCESS)
 			->sum('tst_total_money');
 
@@ -67,7 +68,7 @@ class AdminStatisticalController extends Controller
             ->get();
 
         // Top mua nhiều trong tháng
-		$topProductBuyMonth = Order::with('product:id,pro_name,pro_avatar')->whereMonth('created_at',date('m'))
+		$topProductBuyMonth = Order::with('product:id,pro_name,pro_avatar')->whereMonth('created_at',$month)
 			->select(\DB::raw('sum(od_qty) as quantity'))
 			->addSelect('od_product_id','od_price')
 			->groupBy('od_product_id')
@@ -76,14 +77,13 @@ class AdminStatisticalController extends Controller
 			->get();
 
         // Tiep nhan
-        $transactionDefault = Transaction::where('tst_status',1)->select('id')->count();
+        $transactionDefault = Transaction::where('tst_status',1)->whereMonth('created_at',$month)->select('id')->count();
         // dang van chuyen
-        $transactionProcess = Transaction::where('tst_status',2)->select('id')->count();
+        $transactionProcess = Transaction::where('tst_status',2)->whereMonth('created_at',$month)->select('id')->count();
         // Thành công
-        $transactionSuccess = Transaction::where('tst_status',3)->select('id')->count();
+        $transactionSuccess = Transaction::where('tst_status',3)->whereMonth('created_at',$month)->select('id')->count();
         //Cancel
-        $transactionCancel = Transaction::where('tst_status',-1)->select('id')->count();
-
+        $transactionCancel = Transaction::where('tst_status',-1)->whereMonth('created_at',$month)->select('id')->count();
         $statusTransaction = [
             [
                 'Hoàn tất' , $transactionSuccess, false
@@ -99,22 +99,21 @@ class AdminStatisticalController extends Controller
             ]
         ];
 
-        $listDay = Date::getListDayInMonth();
+        $listDay = Date::getListDayInMonth($month);
 
         //Doanh thu theo tháng ứng với trạng thái đã xử lý
         $revenueTransactionMonth = Transaction::where('tst_status',3)
-            ->whereMonth('created_at',date('m'))
+            ->whereMonth('created_at',$month)
             ->select(\DB::raw('sum(tst_total_money) as totalMoney'), \DB::raw('DATE(created_at) day'))
             ->groupBy('day')
             ->get()->toArray();
 
         //Doanh thu theo tháng ứng với trạng thái tiếp nhận
         $revenueTransactionMonthDefault = Transaction::where('tst_status',1)
-            ->whereMonth('created_at',date('m'))
+            ->whereMonth('created_at',$month)
             ->select(\DB::raw('sum(tst_total_money) as totalMoney'), \DB::raw('DATE(created_at) day'))
             ->groupBy('day')
             ->get()->toArray();
-
         $arrRevenueTransactionMonth = [];
         $arrRevenueTransactionMonthDefault = [];
         foreach($listDay as $day) {

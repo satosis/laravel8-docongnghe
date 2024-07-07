@@ -8,6 +8,8 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use Illuminate\Support\Facades\Log;
+use App\Models\Slide;
+use Illuminate\Support\Facades\Cache;
 
 class HomeController extends FrontendController
 {
@@ -49,11 +51,18 @@ class HomeController extends FrontendController
 				->limit(4)
 				->get();
 
+		// Lấy slide trang chủ
+		$slides = Cache::remember('HOME.SLIDE', 60 * 24 * 10, function () {
+			return Slide::where('sd_active', 1)
+				->orderBy('sd_sort', 'asc')
+				->get();
+		});
 
 		$viewData = [
 			'productsNew' => $productsNew,
 			'productsHot' => $productsHot,
 			'productsPay' => $productsPay,
+			'slides'      => $slides,
 			'title_page'  => "Trang chủ | Đồ án tốt nghiệp",
 			'articlesHot' => $articlesHot
 		];

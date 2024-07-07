@@ -4,7 +4,11 @@
     <section class="content-header">
         <h1>{{ config('layouts.admin.title') }}</h1>
         <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Trang chủ</a></li>
+            <select class="form-control" style="margin-top: -10px"  onchange="(window.location = '?thang='+this.options[this.selectedIndex].value);">
+            @for($i=1;$i < 13; $i++)
+            <option value="{{ $i }}" @if ( (Request::get('thang') == null && date('m') == $i) || Request::get('thang') == $i ) selected @endif>Tháng {{ $i }}</option>
+            @endfor
+        </select>
         </ol>
     </section>
     <section class="content">
