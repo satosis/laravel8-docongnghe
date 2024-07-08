@@ -19,6 +19,9 @@ use Spatie\Activitylog\Contracts\Activity;
 
 class AdminProductController extends Controller
 {
+	 public function __construct() {
+	        cache()->flush();
+	    }
 	public function index(Request $request)
 	{
 		$sumNumber = Product::sum('pro_number');
