@@ -142,7 +142,7 @@
                                         <div style="display: grid;grid-template-columns: auto auto auto auto;width: 100%;">
                                         <h3 class="text2">
                                             @if (isset($product->category->c_name))
-                                                <a href="{{  route('get.category.list', $product->category->c_slug).'-'.$product->pro_category_id }}">{{ $product->category->c_name }}</a>
+                                                <a href="{{ route('get.category.list', $product->category->c_slug).'-'.$product->pro_category_id }}">{{ $product->category->c_name }}</a>
                                             @endif
                                         </div>
                                         </h3>
