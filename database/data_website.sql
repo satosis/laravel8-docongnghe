@@ -831,6 +831,7 @@ INSERT INTO `products` (`id`, `pro_name`, `pro_slug`, `pro_price`, `pro_price_en
 -- Table structure for table `products_attributes`
 --
 
+DROP TABLE IF EXISTS `products_attributes`;
 CREATE TABLE `products_attributes` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `pa_product_id` int(11) NOT NULL DEFAULT 0,
