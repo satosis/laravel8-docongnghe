@@ -8,6 +8,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="icon" sizes="32x32" type="image/png" href="{{ asset('ico.png') }}" />
         @yield('css')
+        <link rel="stylesheet" href="{{ asset('css/tech-theme.css') }}">
 
         {{-- Thông báo --}}
         @if(session('toastr'))
