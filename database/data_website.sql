@@ -150,6 +150,16 @@ INSERT INTO `activity_log` (`id`, `log_name`, `description`, `subject_id`, `subj
 --
 -- Table structure for table `admins`
 --
+CREATE TABLE `attributes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `atb_name` varchar(191) NOT NULL,
+  `atb_slug` varchar(191) NOT NULL,
+  `atb_type` tinyint(4) NOT NULL DEFAULT 0,
+  `atb_category_id` int(11) NOT NULL DEFAULT 0,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
 
 CREATE TABLE `admins` (
   `id` bigint(20) UNSIGNED NOT NULL,
