@@ -40,16 +40,48 @@
             </div>
         @endif
     </div>
-    <div class="container" id="before-slide">
+    <div class="container tech-hero">
+        <div>
+            <div class="tech-hero__eyebrow">Thiết bị công nghệ chính hãng</div>
+            <div class="tech-hero__title">Nâng tầm trải nghiệm số của bạn</div>
+            <p class="tech-hero__desc">Chọn laptop, PC, gaming gear và phụ kiện công nghệ với ưu đãi độc quyền, giao nhanh tận nơi và bảo hành rõ ràng.</p>
+            <div class="tech-hero__actions">
+                <a href="{{ route('get.product.list') }}" class="tech-btn-primary">
+                    <i class="fa fa-shopping-bag"></i> Mua ngay
+                </a>
+                <a href="#flash_sale" class="tech-btn-ghost">
+                    <i class="fa fa-bolt"></i> Xem ưu đãi công nghệ
+                </a>
+            </div>
+            <ul class="tech-hero__badges">
+                <li class="tech-hero__badge"><i class="fa fa-shield"></i><span>Hàng chính hãng, bảo hành minh bạch</span></li>
+                <li class="tech-hero__badge"><i class="fa fa-truck"></i><span>Giao nhanh trong 2 giờ</span></li>
+                <li class="tech-hero__badge"><i class="fa fa-headphones"></i><span>Hỗ trợ kỹ thuật 24/7</span></li>
+            </ul>
+        </div>
+        <div class="tech-hero__visual">
+            <div class="tech-hero__glass">
+                <img src="{{ asset('images/banner/banner-3.png') }}" alt="Ưu đãi công nghệ" />
+            </div>
+        </div>
+    </div>
+    <div class="container tech-surface" id="before-slide">
+        <div class="tech-highlight-grid">
+            <div class="tech-highlight-card"><i class="fa fa-laptop"></i><span>PC - Laptop cấu hình cao</span></div>
+            <div class="tech-highlight-card"><i class="fa fa-gamepad"></i><span>Gaming gear chính hãng</span></div>
+            <div class="tech-highlight-card"><i class="fa fa-headphones"></i><span>Âm thanh - phụ kiện chất</span></div>
+            <div class="tech-highlight-card"><i class="fa fa-refresh"></i><span>Đổi trả trong 15 ngày</span></div>
+        </div>
         <div class="product-one">
-            <div class="top">
+            <div class="top tech-section-heading">
                 <a href="#" title="" class="main-title main-title-2">Sản phẩm bán chạy</a>
+                <small>Top lựa chọn cho game thủ, designer, coder</small>
             </div>
             <div class="bot">
                 <div class="left">
                     <div class="image">
                         <a href="javascript:;" title="" class=" image" target="_blank">
-                            <img style="height: 310px;" class="lazyload lazy" alt="" src="{{  asset('images/preloader.gif') }}"  data-src="{{  pare_url_file('2024-04-21__bst-web-1.jpg') }}" />
+                            <img style="height: 310px;" class="lazyload lazy" alt="" src="{{  asset('images/preloader.gif') }}"  data-src="{{  asset('images/banner/banner-1.png') }}" />
                         </a>
                     </div>
                 </div>
@@ -75,14 +107,15 @@
         @endif
 
         <div class="product-three">
-            <div class="top">
+            <div class="top tech-section-heading">
                 <a href="#" title="" class="main-title main-title-2">Sản phẩm mới</a>
+                <small>Thiết kế hiện đại, cấu hình tối ưu</small>
             </div>
             <div class="bot">
                 <div class="left">
                     <div class="image">
                         <a href="javascript:;" title="" class="" target="_blank">
-                            <img style="height: 310px;" class="lazyload lazy" alt="event3" src="{{  asset('images/preloader.gif') }}"  data-src="{{  pare_url_file('2024-04-21__bst-web-1.jpg') }}" />
+                            <img style="height: 310px;" class="lazyload lazy" alt="event3" src="{{  asset('images/preloader.gif') }}"  data-src="{{  asset('images/banner/banner-2.png') }}" />
                         </a>
                     </div>
                 </div>
@@ -114,8 +147,9 @@
             </div>
         @endif
         <div class="product-two">
-            <div class="top">
+            <div class="top tech-section-heading">
                 <a href="#" class="main-title main-title-2">Sản phẩm nổi bật</a>
+                <small>Được săn đón nhiều nhất tuần này</small>
             </div>
             <div class="bot">
                 @if (isset($productsHot))

@@ -2,7 +2,7 @@
     <div style="height: 55px;background: #3a2615;padding: 10px">
         <div style="width: 50%">
             <a href="">
-                <img style="height: 55px" src="http://tranining.previewcode.net/images/icon/Logo.png">
+                <img style="height: 55px" src="{{ asset('images/icon/Logo.png') }}">
             </a>
         </div>
         <div style="width: 50%"></div>
