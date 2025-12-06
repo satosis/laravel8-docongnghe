@@ -219,14 +219,11 @@
     transform: translateY(-2px);
     box-shadow: 0 12px 26px rgba(0, 0, 0, 0.35);
 }
-
-.product-item h3,
-.product-item .price,
-.product-item .price-sale,
-.product-item .percent {
+.main-title {
+    font-size: 21px;
     color: #fff;
+    text-transform: uppercase;
 }
-
 .product-item .price-sale {
     color: var(--tech-muted);
 }

@@ -14,25 +14,25 @@
     <p>Chương trình Gala “ Báo chí với doanh nhân, doanh nghiệp” do tạp chí Doanh nghiệp và Hội nhập, Hiệp hội doanh nghiệp Việt Nam…phối hợp cùng tổ chức. Chương trình có sự tham dự của đại diện lãnh đạo Đảng và nhà nước, lãnh đạo các Bộ, Ban, Ngành TW, các tổ chức phi chính phủ cùng Doanh nhân, Doanh nghiệp trong và ngoài nước.</p>
 
     <p style="text-align:center">
-        <a href="{{ asset('images/banner/banner-1.png') }}" class="example-image-link countimg1" data-lightbox="example-1"><img alt="" src="{{ asset('images/banner/banner-1.png') }}" style="height:533px; width:500px" data-lightbox="roadtrip"></a>
+        <a href="{{ asset('uploads/banner-1.png') }}" class="example-image-link countimg1" data-lightbox="example-1"><img alt="" src="{{ asset('uploads/banner-1.png') }}" style="height:533px; width:500px" data-lightbox="roadtrip"></a>
     </p>
 
     <p>Chương trình nhằm tôn vinh và khen thưởng những Doanh nghiệp tiêu biểu, sản xuất hiệu quả và bền vững. Các thương hiệu và sản phẩm đáp ứng các tiêu chí cơ bản như: là sản phẩm có uy tín trên thị trường và được tin dùng, chấp hành tốt chính sách và pháp luật, tích cực tham gia các hoạt động vì sự phát triển cộng đồng…</p>
 
     <p style="text-align:center">
-        <a class="example-image-link countimg2" href="{{ asset('images/banner/banner-2.png') }}" data-lightbox="example-1"><img alt="" src="{{ asset('images/banner/banner-2.png') }}" style="height:308px; line-height:20.7999992370605px; text-align:center; width:500px" data-lightbox="roadtrip"></a>
+        <a class="example-image-link countimg2" href="{{ asset('uploads/banner-2.png') }}" data-lightbox="example-1"><img alt="" src="{{ asset('uploads/banner-2.png') }}" style="height:308px; line-height:20.7999992370605px; text-align:center; width:500px" data-lightbox="roadtrip"></a>
     </p>
 
     <p>Đây là chương trình đặc sắc, hoành tráng và trang trọng, có sức lan tỏa lớn, giúp Doanh nghiệp khẳng định thương hiệu của mình. Là một Doanh nghiệp uy tín cung cấp sản phẩm Đồng hồ đeo tay chính hãng trên thị trường Việt Nam với phương châm “đáp ứng mọi yêu cầu dù khắt khe nhất của khách hàng”. Công ty luôn duy trì được tốc độ tăng trưởng cao, toàn diện về mọi mặt một cách bền vững so với các công ty kinh doanh cùng lĩnh vực . Đăng Quang Watch vinh dự nhận được giải thưởng “ thương hiệu, sản phẩm và dịch vụ xuất sắc năm 2014 – 2015 “ đó là nhờ sự tin tưởng và ủng hộ từ phía khách hàng.</p>
 
     <p style="text-align:center">
-        <a href="{{ asset('images/banner/banner-3.png') }}" class="example-image-link countimg3" data-lightbox="example-1"><img alt="Đăng Quang Watch được vinh danh trong Gala “Báo chí với doanh nhân, doanh nghiệp”" src="{{ asset('images/banner/banner-3.png') }}" style="height:355px; width:500px" data-lightbox="roadtrip"></a>
+        <a href="{{ asset('uploads/banner-3.png') }}" class="example-image-link countimg3" data-lightbox="example-1"><img alt="Đăng Quang Watch được vinh danh trong Gala “Báo chí với doanh nhân, doanh nghiệp”" src="{{ asset('uploads/banner-3.png') }}" style="height:355px; width:500px" data-lightbox="roadtrip"></a>
     </p>
 
     <p style="text-align:center">Đăng Quang Watch cam kết sẽ tiếp tục là nhà cung cấp các sản phẩm chất lượng, uy tín với dịch vụ hỗ trợ tốt nhất để luôn là lựa chọn tin cậy nhất.</p>
 
     <p>Tham khảo các sản phẩm và hệ thống phân phối của Đăng Quang Watch tại :
-        <a href="{{ asset('images/logo.png') }}">www.dangquangwatch.vn</a></p>
+        <a href="{{ asset('uploads/logo.png') }}">www.dangquangwatch.vn</a></p>
 
     <p>&nbsp;</p>
 

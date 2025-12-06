@@ -40,7 +40,7 @@
 <div class="commonTop" style="position: unset !important;">
     <div id="headers" style="background: {{ config('layouts.component.menu.background') }};display:flex; ">
         <a href="{{  route('get.home') }}" class="desktop">
-            <img src="{{ url('images/logo.png') }}" style="height: 50px;position: absolute;left: 30px;" alt="Trang chủ">
+            <img src="{{ url('uploads/logo.png') }}" style="height: 50px;position: absolute;left: 30px;" alt="Trang chủ">
         </a>
         <div class="container header-wrapper">
             <!--Thay đổi-->

@@ -8,38 +8,6 @@
     </style>
 @stop
 @section('content')
-    <div class="component-slide">
-        @if (config('layouts.pages.home.slide.with') == 'full')
-            <div id="content-slide">
-                <div class="spinner">
-                    <div class="rect1"></div>
-                    <div class="rect2"></div>
-                    <div class="rect3"></div>
-                    <div class="rect4"></div>
-                    <div class="rect5"></div>
-                </div>
-            </div>
-        @else
-            <div class="container" style="display: flex">
-
-                <div class="right" style="width: 100%;">
-                    <div id="content-slide">
-                        <div id="slider">
-                            <div class="imageSlide js-banner owl-carousel">
-                                @foreach($slides as $item)
-                                    <div>
-                                        <a href="{{ $item->sd_link }}" title="{{ $item->sd_title }}" target="{{ $item->target }}">
-                                            <img alt="Đồ án tốt nghiệp" src="{{ pare_url_file($item->sd_image) }}"  style="max-width: 100%;height: 300px;" class="" />
-                                        </a>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endif
-    </div>
     <div class="container tech-hero">
         <div>
             <div class="tech-hero__eyebrow">Thiết bị công nghệ chính hãng</div>
@@ -61,7 +29,7 @@
         </div>
         <div class="tech-hero__visual">
             <div class="tech-hero__glass">
-                <img src="{{ asset('images/banner/banner-3.png') }}" alt="Ưu đãi công nghệ" />
+                <img src="{{ asset('uploads/banner-3.png') }}" alt="Ưu đãi công nghệ" />
             </div>
         </div>
     </div>
@@ -81,7 +49,7 @@
                 <div class="left">
                     <div class="image">
                         <a href="javascript:;" title="" class=" image" target="_blank">
-                            <img style="height: 310px;" class="lazyload lazy" alt="" src="{{  asset('images/preloader.gif') }}"  data-src="{{  asset('images/banner/banner-1.png') }}" />
+                            <img style="height: 310px;" class="lazyload lazy" alt="" src="{{  asset('images/preloader.gif') }}"  data-src="{{  asset('uploads/banner-1.png') }}" />
                         </a>
                     </div>
                 </div>
@@ -97,8 +65,8 @@
 
         <div id="flash_sale">
             <a href="" title="" class="image" target="_blank">
-                <img  alt="" src="/images/banner/banner-3.png" class="lazyload" style="width:49%;height:250px;object-fit: cover;" />
-                <img  alt="" src="/images/banner/banner-2.png" class="lazyload" style="width:49%;height:250px;object-fit: cover;" />
+                <img  alt="" src="uploads/banner-3.png" class="lazyload" style="width:49%;height:250px;object-fit: cover;" />
+                <img  alt="" src="uploads/banner-2.png" class="lazyload" style="width:49%;height:250px;object-fit: cover;" />
             </a>
 
         </div>
@@ -115,7 +83,7 @@
                 <div class="left">
                     <div class="image">
                         <a href="javascript:;" title="" class="" target="_blank">
-                            <img style="height: 310px;" class="lazyload lazy" alt="event3" src="{{  asset('images/preloader.gif') }}"  data-src="{{  asset('images/banner/banner-2.png') }}" />
+                            <img style="height: 310px;" class="lazyload lazy" alt="event3" src="{{  asset('images/preloader.gif') }}"  data-src="{{  asset('uploads/banner-2.png') }}" />
                         </a>
                     </div>
                 </div>
@@ -135,12 +103,12 @@
                 <div class="banner" style="display: flex">
                     <div class="item" style="width: 50%;">
                         <a href="">
-                            <img src="{{ asset('images/banner/banner-1.png') }}" style="height:250px;width:100%">
+                            <img src="{{ asset('uploads/banner-1.png') }}" style="height:250px;width:100%">
                         </a>
                     </div>
                     <div class="item" style="width: 50%;">
                         <a href="">
-                            <img src="{{ asset('images/banner/banner-2.png') }}" style="height:250px;width:100%">
+                            <img src="{{ asset('uploads/banner-2.png') }}" style="height:250px;width:100%">
                         </a>
                     </div>
                 </div>
