@@ -825,6 +825,22 @@ INSERT INTO `products` (`id`, `pro_name`, `pro_slug`, `pro_price`, `pro_price_en
 (51, 'Gói vệ sinh thiết bị', 'goi-ve-sinh-thiet-bi', 250000, 0, 5, 1, 0, 12, NULL, 'uploads/w4 case 1233.jpg', 20, 0, '2020-06-17 00:00:00', 1, 3, 'Sản phẩm công nghệ chính hãng, bảo hành 12-24 tháng tại Đồ Công Nghệ.', 'Giao hàng toàn quốc, đổi trả trong 7 ngày và hỗ trợ kỹ thuật 24/7.', 1, 3, 3, '2020-04-25 15:17:22', 10, 1, 20, NULL, NULL, 0, '2024-04-26 08:04:10'),
 (52, 'Tai nghe true wireless Xelento Special', 'tai-nghe-true-wireless-xelento-special', 10000, 0, 3, 0, 0, 20, NULL, 'uploads/xelento g2  123.png', 4, 0, '2020-06-27 00:00:00', 1, 1, 'Sản phẩm công nghệ chính hãng, bảo hành 12-24 tháng tại Đồ Công Nghệ.', 'Giao hàng toàn quốc, đổi trả trong 7 ngày và hỗ trợ kỹ thuật 24/7.', 0, 0, 0, '2020-06-18 12:11:52', 602, 0, 39, NULL, NULL, 0, '2024-04-26 08:04:30'));
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products_attributes`
+--
+
+CREATE TABLE `products_attributes` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `pa_product_id` int(11) NOT NULL DEFAULT 0,
+  `pa_attribute_id` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `products_attributes`
+--
+
 INSERT INTO `products_attributes` (`id`, `pa_product_id`, `pa_attribute_id`) VALUES
 (103, 51, 1),
 (104, 51, 4),
