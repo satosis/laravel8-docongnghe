@@ -81,7 +81,6 @@ class HomeController extends FrontendController
 				->get();
 		});
 
-
 		$viewData = [
 			'productsNew' => $productsNew,
 			'productsHot' => $productsHot,

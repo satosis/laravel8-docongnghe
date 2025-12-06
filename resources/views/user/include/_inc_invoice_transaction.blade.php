@@ -4,7 +4,7 @@
 	<div style="display: flex">
 		<div class="col-3" style="width: 33.3333333%;float: left"></div>
 		<div class="col-3" style="width: 33.3333333%;float: left;text-align: center">
-			<p style="text-align: center;margin: 0">Hà Huyền</p>
+			<p style="text-align: center;margin: 0">me</p>
 		</div>
 		<div class="col-3" style="width: 33.3333333%;float: left">
 			<p style="text-align:left">Ký hiệu: .....</p>

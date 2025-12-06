@@ -14,7 +14,7 @@
         <div class="layout layout-nav-side">
             <div class="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
                 <a class="navbar-brand" href="/">
-                    <img alt="Pipeline" src="{{ url('images/logo.png') }}" style="max-width: 100%" />
+                    <img alt="Pipeline" src="{{ url('uploads/logo.png') }}" style="max-width: 100%" />
                 </a>
                 <div class="d-flex align-items-center">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
