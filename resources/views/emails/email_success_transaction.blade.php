@@ -2,7 +2,7 @@
     <div style="height: 55px;background: #3a2615;padding: 10px">
         <div style="width: 50%">
             <a href="">
-                <img style="height: 55px" src="http://tranining.previewcode.net/images/icon/Logo.png">
+                <img style="height: 55px" src="{{ asset('images/icon/Logo.png') }}">
             </a>
         </div>
         <div style="width: 50%"></div>
@@ -14,7 +14,7 @@
                 <div style="border-bottom: 1px solid #dedede;padding-bottom: 10px;padding-top: 10px;">
                     <div class="" style="width: 15%;float: left;">
                         <a href="">
-                            <img style="max-width: 100%;width: 80px;height: 100px" src="http://tranining.previewcode.net{{ pare_url_file($item->options->image) }}">
+                            <img style="max-width: 100%;width: 80px;height: 100px" src="{{ asset(pare_url_file($item->options->image)) }}">
                         </a>
                     </div>
                     <div style="width: 80%;float: right;">
