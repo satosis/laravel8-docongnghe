@@ -1318,7 +1318,7 @@ CREATE TABLE `user_favourite` (
 --
 
 INSERT INTO `user_favourite` (`id`, `uf_product_id`, `uf_user_id`) VALUES
-(1, 50, 1);
+(1, 1, 1);
 
 -- --------------------------------------------------------
 
