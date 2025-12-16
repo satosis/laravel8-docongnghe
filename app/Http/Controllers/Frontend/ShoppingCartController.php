@@ -3,42 +3,19 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
-use App\Services\ShoppingCartService\PayManager;
-use Illuminate\Http\Request;
 use App\Models\Product;
-use Carbon\Carbon;
-use App\Models\Transaction;
 use App\Models\Order;
-use App\Mail\TransactionSuccess;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Str;
+use App\Models\Transaction;
 use App\Models\Voucher;
-use Auth;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Auth;
 use Cart;
 use Session;
 
 class ShoppingCartController extends Controller
 {
-    function execPostRequest($url, $data)
-    {
-        $ch = curl_init($url);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                'Content-Type: application/json',
-                'Content-Length: ' . strlen($data))
-        );
-        curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
-        //execute post
-        $result = curl_exec($ch);
-        //close connection
-        curl_close($ch);
-        return $result;
-    }
     public function index()
     {
         $shopping = Cart::content();
@@ -79,7 +56,7 @@ class ShoppingCartController extends Controller
 
     /**
      * Thêm giỏ hàng
-     * */
+     */
     public function add(Request $request, $id)
     {
         $type = $request->type;
@@ -87,7 +64,9 @@ class ShoppingCartController extends Controller
         $product = Product::find($id);
 
         //1. Kiểm tra tồn tại sản phẩm
-        if (!$product) return redirect()->to('/');
+        if (!$product) {
+            return redirect()->to('/');
+        }
 
         // 2. Kiểm tra số lượng sản phẩm
         if ($product->pro_number < 1) {
@@ -99,21 +78,25 @@ class ShoppingCartController extends Controller
 
             return redirect()->back();
         }
-		$cart = Cart::content();
-		$idCartProduct = $cart->search(function ($cartItem) use ($product){
-			if ($cartItem->id == $product->id) return $cartItem->id;
-		});
-		if ($idCartProduct) {
-			$productByCart = Cart::get($idCartProduct);
-			if ($product->pro_number < ($productByCart->qty + 1))
-			{
-				Session::flash('toastr', [
-					'type'    => 'error',
-					'message' => 'Số lượng sản phẩm không đủ'
-				]);
-				return  redirect()->back();
-			}
-		}
+
+        $cart = Cart::content();
+        $idCartProduct = $cart->search(function ($cartItem) use ($product) {
+            if ($cartItem->id == $product->id) {
+                return $cartItem->id;
+            }
+        });
+
+        if ($idCartProduct) {
+            $productByCart = Cart::get($idCartProduct);
+            if ($product->pro_number < ($productByCart->qty + 1)) {
+                Session::flash('toastr', [
+                    'type'    => 'error',
+                    'message' => 'Số lượng sản phẩm không đủ'
+                ]);
+
+                return redirect()->back();
+            }
+        }
 
         // 3. Thêm sản phẩm vào giỏ hàng
         Cart::add([
@@ -143,7 +126,7 @@ class ShoppingCartController extends Controller
 
     public function postPay(Request $request)
     {
-        $data = $request->except("_token");
+        $data = $request->except('_token');
         $shopping = Cart::content();
         if ($shopping->isEmpty()) {
             Session::flash('toastr', [
@@ -153,8 +136,8 @@ class ShoppingCartController extends Controller
 
             return redirect()->route('get.shopping.list');
         }
-        if (!\Auth::user()->id) {
-            //4. Thông báo
+
+        if (!Auth::check()) {
             Session::flash('toastr', [
                 'type'    => 'error',
                 'message' => 'Đăng nhập để thực hiện tính năng này'
@@ -164,18 +147,16 @@ class ShoppingCartController extends Controller
         }
 
         $totals = $this->getCartTotals();
-        $data['tst_user_id'] = \Auth::user()->id;
+        $data['tst_user_id'] = Auth::id();
         $amount = $totals['total'];
         $data['tst_total_money'] = $amount;
         $data['tst_discount'] = $totals['discount'];
         $data['tst_voucher_id'] = $totals['voucher'] ? $totals['voucher']->id : null;
         $data['tst_type'] = (int) $data['tst_type'];
-        $data['created_at']      = Carbon::now();
+        $data['created_at'] = Carbon::now();
 
         // Lấy thông tin đơn hàng
         $data['options']['orders'] = $shopping;
-
-        $options['drive'] = $request->tst_type == 1 ? 'transfer' : 'online';
 
         $this->storeTransaction($data, $totals['voucher']);
         Cart::destroy();
@@ -187,9 +168,7 @@ class ShoppingCartController extends Controller
             'message' => 'Mua hàng thành công'
         ]);
         // check nếu thanh toán ví thì kiểm tra số tiền
-        if ($request->tst_type == Transaction::TYPE_ONLINE)
-        {
-            $code = 'SA'. strtoupper(Str::random(10));
+        if ($request->tst_type == Transaction::TYPE_ONLINE) {
             $vnp_TmnCode = Config::get('env.vnpay.code'); //Mã website tại VNPAY
             $vnp_HashSecret = Config::get('env.vnpay.secret'); //Chuỗi bí mật
             $vnp_Url = Config::get('env.vnpay.url');
@@ -201,7 +180,7 @@ class ShoppingCartController extends Controller
             $vnp_Locale = 'vn';
             $vnp_IpAddr = request()->ip();
             $startTime = date("YmdHis");
-            $inputData = array(
+            $inputData = [
                 "vnp_Version" => "2.1.0",
                 "vnp_TmnCode" => $vnp_TmnCode,
                 "vnp_Amount" => $vnp_Amount,
@@ -214,8 +193,8 @@ class ShoppingCartController extends Controller
                 "vnp_OrderType" => $vnp_OrderType,
                 "vnp_ReturnUrl" => $vnp_Returnurl,
                 "vnp_TxnRef" => $vnp_TxnRef,
-                "vnp_ExpireDate"=> date('YmdHis',strtotime('+15 minutes',strtotime($startTime)))
-            );
+                "vnp_ExpireDate" => date('YmdHis', strtotime('+15 minutes', strtotime($startTime)))
+            ];
 
             if (isset($vnp_BankCode) && $vnp_BankCode != "") {
                 $inputData['vnp_BankCode'] = $vnp_BankCode;
@@ -235,7 +214,7 @@ class ShoppingCartController extends Controller
             }
             $vnp_Url = $vnp_Url . "?" . $query;
             if (isset($vnp_HashSecret)) {
-                $vnpSecureHash =   hash_hmac('sha512', $hashdata, $vnp_HashSecret);//
+                $vnpSecureHash = hash_hmac('sha512', $hashdata, $vnp_HashSecret); //
                 $vnp_Url .= 'vnp_SecureHash=' . $vnpSecureHash;
             }
             return redirect()->to($vnp_Url);
@@ -245,11 +224,10 @@ class ShoppingCartController extends Controller
 
     public function callback(Request $request)
     {
-        $apiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
         $vnp_TmnCode = Config::get('env.vnpay.code'); //Mã website tại VNPAY
         $vnp_TransactionDate = $request->vnp_PayDate; // Thời gian ghi nhận giao dịch
         $vnp_HashSecret = Config::get('env.vnpay.secret'); //Chuỗi bí mật
-        $vnp_RequestId = rand(1,10000); // Mã truy vấn
+        $vnp_RequestId = rand(1, 10000); // Mã truy vấn
         $vnp_Command = "querydr"; // Mã api
         $vnp_TxnRef = $request->vnp_TxnRef; // Mã tham chiếu của giao dịch
         $vnp_OrderInfo = "Query transaction"; // Mô tả thông tin
@@ -257,8 +235,7 @@ class ShoppingCartController extends Controller
         $vnp_CreateDate = date('YmdHis'); // Thời gian phát sinh request
         $vnp_IpAddr = $_SERVER['REMOTE_ADDR']; // Địa chỉ IP của máy chủ thực hiện gọi API
 
-
-        $datarq = array(
+        $datarq = [
             "vnp_RequestId" => $vnp_RequestId,
             "vnp_Version" => "2.1.0",
             "vnp_Command" => $vnp_Command,
@@ -269,7 +246,7 @@ class ShoppingCartController extends Controller
             "vnp_TransactionDate" => $vnp_TransactionDate,
             "vnp_CreateDate" => $vnp_CreateDate,
             "vnp_IpAddr" => $vnp_IpAddr
-        );
+        ];
 
         $format = '%s|%s|%s|%s|%s|%s|%s|%s|%s';
 
@@ -283,13 +260,13 @@ class ShoppingCartController extends Controller
             $datarq['vnp_TransactionDate'], //6
             $datarq['vnp_CreateDate'], //7
             $datarq['vnp_IpAddr'], //8
-            $datarq['vnp_OrderInfo']//9
+            $datarq['vnp_OrderInfo'] // 9
         );
 
         $pay = Transaction::where('id', $request->vnp_TxnRef)->first();
         $status = false;
         if ($pay) {
-            if($request->vnp_ResponseCode == "00") {
+            if ($request->vnp_ResponseCode == "00") {
                 $pay->tst_status = 2;
                 $status = true;
             } else {
@@ -300,7 +277,7 @@ class ShoppingCartController extends Controller
 
         return view('frontend.pages.shopping.success', [
             'transaction' => $pay,
-            'status' => $status
+            'status'       => $status
         ]);
     }
 
@@ -314,7 +291,9 @@ class ShoppingCartController extends Controller
             $product   = Product::find($idProduct);
 
             //2. Kiểm tra tồn tại sản phẩm
-            if (!$product) return response(['messages' => 'Không tồn tại sản sản phẩm cần update']);
+            if (!$product) {
+                return response(['messages' => 'Không tồn tại sản sản phẩm cần update']);
+            }
 
             //3. Kiểm tra số lượng sản phẩm còn ko
             if ($product->pro_number < $qty) {
@@ -336,12 +315,11 @@ class ShoppingCartController extends Controller
     }
 
     /**
-     *  Xoá sản phẩm đơn hang
-     * */
+     * Xoá sản phẩm đơn hàng
+     */
     public function delete(Request $request, $rowId)
     {
-        if ($request->ajax())
-        {
+        if ($request->ajax()) {
             Cart::remove($rowId);
             return response([
                 'totalMoney' => Cart::subtotal(0),
@@ -434,53 +412,59 @@ class ShoppingCartController extends Controller
 
     protected function isVoucherValid(Voucher $voucher)
     {
-        if (!$voucher->isActive()) return false;
+        if (!$voucher->isActive()) {
+            return false;
+        }
 
         return true;
     }
 
-      //store transaction to database
-      public function storeTransaction($data, Voucher $voucher = null)
-      {
-          $transaction = Transaction::create([
-              'tst_user_id' => Auth::id(),
-              'tst_voucher_id' => $data['tst_voucher_id'] ?? null,
-              'tst_total_money' => $data['tst_total_money'],
-              'tst_discount' => $data['tst_discount'] ?? 0,
-              'tst_name' => $data['tst_name'],
-              'tst_email' => $data['tst_email'],
-              'tst_phone' => $data['tst_phone'],
-              'tst_address' => $data['tst_address'],
-              'tst_note' => $data['tst_note'],
-              'tst_code' => $data['tst_code'] ?? '',
-              'tst_status' => 1,
-              'tst_type' => $data['tst_type'],
-          ]);
-          if ($transaction) {
-              $shopping = Cart::content();
-              foreach ($shopping as $key => $item) {
-                  Order::insert([
-                      'od_transaction_id' => $transaction->id,
-                      'od_product_id' => $item->id,
-                      'od_sale' => $item->options->sale,
-                      'od_qty' => $item->qty,
-                      'od_price' => $item->price,
-                      'od_size' => $item->options->size,
-                  ]);
-                  //Tăng số lượt mua của sản phẩm
-                  $product = Product::find($item->id);
-                  $product->pro_pay = $product->pro_pay + 1;
-                  $product->pro_amount = $product->pro_amount - $item->qty;
-              }
-              if ($voucher) {
-                  $voucher->increment('vc_used');
-              }
-          }
-          Session::flash('toastr', [
-              'type' => 'success',
-              'message' => 'Đặt hàng thành công'
-          ]);
-          // Cart::destroy();
-          return $transaction->id;
-      }
+    // Store transaction to database
+    public function storeTransaction($data, Voucher $voucher = null)
+    {
+        $transaction = Transaction::create([
+            'tst_user_id'     => Auth::id(),
+            'tst_voucher_id'  => $data['tst_voucher_id'] ?? null,
+            'tst_total_money' => $data['tst_total_money'],
+            'tst_discount'    => $data['tst_discount'] ?? 0,
+            'tst_name'        => $data['tst_name'],
+            'tst_email'       => $data['tst_email'],
+            'tst_phone'       => $data['tst_phone'],
+            'tst_address'     => $data['tst_address'],
+            'tst_note'        => $data['tst_note'],
+            'tst_code'        => $data['tst_code'] ?? '',
+            'tst_status'      => 1,
+            'tst_type'        => $data['tst_type'],
+        ]);
+
+        if ($transaction) {
+            $shopping = Cart::content();
+            foreach ($shopping as $item) {
+                Order::insert([
+                    'od_transaction_id' => $transaction->id,
+                    'od_product_id'     => $item->id,
+                    'od_sale'           => $item->options->sale,
+                    'od_qty'            => $item->qty,
+                    'od_price'          => $item->price,
+                    'od_size'           => $item->options->size,
+                ]);
+
+                //Tăng số lượt mua của sản phẩm
+                $product = Product::find($item->id);
+                $product->pro_pay = $product->pro_pay + 1;
+                $product->pro_amount = $product->pro_amount - $item->qty;
+            }
+
+            if ($voucher) {
+                $voucher->increment('vc_used');
+            }
+        }
+
+        Session::flash('toastr', [
+            'type'    => 'success',
+            'message' => 'Đặt hàng thành công'
+        ]);
+
+        return $transaction->id;
+    }
 }
