@@ -46,6 +46,13 @@
                     @endif
                 </div>
                 <div class="form-group">
+                    <label for="password_confirmation">Nhập lại Password <span class="cRed">(*)</span></label>
+                    <input name="password_confirmation" id="password_confirmation" type="password" placeholder="********" class="form-control">
+                    @if ($errors->first('password_confirmation'))
+                        <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
+                    @endif
+                </div>
+                <div class="form-group">
                     <label for="phone">Điện thoại <span class="cRed">(*)</span></label>
                     <input name="phone" id="phone" type="number" value="{{  old('phone') }}" placeholder="123456789" class="form-control">
                     @if ($errors->first('phone'))

@@ -25,4 +25,9 @@ return [
         'route' => 'get.user.comment',
         'icon'  => 'fa fa-comments'
     ],
+    [
+        'name'  => 'Voucher',
+        'route' => 'get.user.voucher',
+        'icon'  => 'fa fa-ticket'
+    ],
 ];

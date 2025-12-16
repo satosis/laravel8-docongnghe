@@ -55,6 +55,7 @@ Route::group(['namespace' => 'Frontend'], function() {
     Route::get('bai-viet/{slug}','ArticleDetailController@index')->name('get.blog.detail'); // chi tiet bai viet
     // GIỏ hàng
     Route::get('don-hang','ShoppingCartController@index')->name('get.shopping.list'); // gio hang
+    Route::get('thanh-toan','ShoppingCartController@checkout')->name('get.shopping.checkout'); // thanh toan
 
     Route::prefix('shopping')->group(function () {
         Route::get('add/{id}','ShoppingCartController@add')->name('get.shopping.add'); // thêm giỏ hàng
@@ -62,6 +63,8 @@ Route::group(['namespace' => 'Frontend'], function() {
         Route::get('update/{id}','ShoppingCartController@update')->name('ajax_get.shopping.update'); // cập nhật
         Route::get('theo-doi-don-hang','TrackOrderController@index')->name('get.track.transaction'); //
         Route::post('pay','ShoppingCartController@postPay')->name('post.shopping.pay'); // xử lý giỏ hàng lưu thông tin
+        Route::post('apply-voucher','ShoppingCartController@applyVoucher')->name('post.shopping.voucher'); // áp dụng voucher
+        Route::get('remove-voucher','ShoppingCartController@removeVoucher')->name('get.shopping.voucher.remove');
     });
 
     //Comment

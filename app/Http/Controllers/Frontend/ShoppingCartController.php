@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use App\Models\Voucher;
 use Auth;
 use Cart;
 use Session;
@@ -42,12 +43,38 @@ class ShoppingCartController extends Controller
     {
         $shopping = Cart::content();
         $modelProduct = new Product();
+        $totals = $this->getCartTotals();
+
         $viewData = [
             'title_page' => 'Danh sách giỏ hàng',
             'size'       => $modelProduct->size,
-            'shopping'   => $shopping
+            'shopping'   => $shopping,
+            'totals'     => $totals
         ];
-        return view('frontend.pages.shopping.index', $viewData);
+        return view('frontend.pages.shopping.cart', $viewData);
+    }
+
+    public function checkout()
+    {
+        $shopping = Cart::content();
+        if ($shopping->isEmpty()) {
+            Session::flash('toastr', [
+                'type'    => 'error',
+                'message' => 'Giỏ hàng của bạn đang trống'
+            ]);
+            return redirect()->route('get.shopping.list');
+        }
+
+        $modelProduct = new Product();
+        $totals = $this->getCartTotals();
+        $viewData = [
+            'title_page' => 'Thanh toán',
+            'size'       => $modelProduct->size,
+            'shopping'   => $shopping,
+            'totals'     => $totals
+        ];
+
+        return view('frontend.pages.shopping.checkout', $viewData);
     }
 
     /**
@@ -117,6 +144,15 @@ class ShoppingCartController extends Controller
     public function postPay(Request $request)
     {
         $data = $request->except("_token");
+        $shopping = Cart::content();
+        if ($shopping->isEmpty()) {
+            Session::flash('toastr', [
+                'type'    => 'error',
+                'message' => 'Giỏ hàng của bạn đang trống'
+            ]);
+
+            return redirect()->route('get.shopping.list');
+        }
         if (!\Auth::user()->id) {
             //4. Thông báo
             Session::flash('toastr', [
@@ -127,20 +163,23 @@ class ShoppingCartController extends Controller
             return redirect()->back();
         }
 
+        $totals = $this->getCartTotals();
         $data['tst_user_id'] = \Auth::user()->id;
-        $amount = str_replace(',', '', Cart::subtotal(0));
+        $amount = $totals['total'];
         $data['tst_total_money'] = $amount;
+        $data['tst_discount'] = $totals['discount'];
+        $data['tst_voucher_id'] = $totals['voucher'] ? $totals['voucher']->id : null;
         $data['tst_type'] = (int) $data['tst_type'];
         $data['created_at']      = Carbon::now();
 
         // Lấy thông tin đơn hàng
-        $shopping = Cart::content();
         $data['options']['orders'] = $shopping;
 
         $options['drive'] = $request->tst_type == 1 ? 'transfer' : 'online';
 
-        $this->storeTransaction($data);
+        $this->storeTransaction($data, $totals['voucher']);
         Cart::destroy();
+        Session::forget('voucher');
 
         $latestId = Transaction::orderBy('id', 'desc')->first()['id'];
         Session::flash('toastr', [
@@ -248,15 +287,21 @@ class ShoppingCartController extends Controller
         );
 
         $pay = Transaction::where('id', $request->vnp_TxnRef)->first();
+        $status = false;
         if ($pay) {
             if($request->vnp_ResponseCode == "00") {
                 $pay->tst_status = 2;
+                $status = true;
             } else {
                 $pay->tst_status = -1;
             }
             $pay->update();
         }
-        return redirect()->to('/');
+
+        return view('frontend.pages.shopping.success', [
+            'transaction' => $pay,
+            'status' => $status
+        ]);
     }
 
     public function update(Request $request, $id)
@@ -306,12 +351,102 @@ class ShoppingCartController extends Controller
         }
     }
 
+    public function applyVoucher(Request $request)
+    {
+        $code = $request->get('vc_code');
+        $voucher = Voucher::where('vc_code', $code)->first();
+
+        if (!$voucher || !$this->isVoucherValid($voucher)) {
+            Session::flash('toastr', [
+                'type'    => 'error',
+                'message' => 'Mã giảm giá không hợp lệ hoặc đã hết hạn'
+            ]);
+
+            return redirect()->back();
+        }
+
+        Session::put('voucher', [
+            'id' => $voucher->id,
+            'code' => $voucher->vc_code,
+        ]);
+
+        Session::flash('toastr', [
+            'type'    => 'success',
+            'message' => 'Áp dụng voucher thành công'
+        ]);
+
+        return redirect()->route('get.shopping.list');
+    }
+
+    public function removeVoucher()
+    {
+        Session::forget('voucher');
+        Session::flash('toastr', [
+            'type'    => 'success',
+            'message' => 'Đã bỏ áp dụng voucher'
+        ]);
+
+        return redirect()->route('get.shopping.list');
+    }
+
+    protected function getCartTotals()
+    {
+        $subtotal = (int) str_replace(',', '', Cart::subtotal(0));
+        $discount = 0;
+        $voucher = null;
+
+        if (Session::has('voucher')) {
+            $voucherData = Session::get('voucher');
+            $voucher = Voucher::find($voucherData['id']);
+
+            if ($voucher && $this->isVoucherValid($voucher)) {
+                $discount = $this->calculateDiscount($voucher, $subtotal);
+            } else {
+                Session::forget('voucher');
+                $voucher = null;
+            }
+        }
+
+        $total = max($subtotal - $discount, 0);
+
+        return [
+            'subtotal' => $subtotal,
+            'discount' => $discount,
+            'total'    => $total,
+            'voucher'  => $voucher,
+        ];
+    }
+
+    protected function calculateDiscount(Voucher $voucher, $subtotal)
+    {
+        $discount = 0;
+        if ($voucher->vc_type == Voucher::TYPE_PERCENT) {
+            $discount = (int) floor($subtotal * ($voucher->vc_value / 100));
+            if ($voucher->vc_max_discount) {
+                $discount = min($discount, $voucher->vc_max_discount);
+            }
+        } else {
+            $discount = $voucher->vc_value;
+        }
+
+        return min($discount, $subtotal);
+    }
+
+    protected function isVoucherValid(Voucher $voucher)
+    {
+        if (!$voucher->isActive()) return false;
+
+        return true;
+    }
+
       //store transaction to database
-      public function storeTransaction($data)
+      public function storeTransaction($data, Voucher $voucher = null)
       {
           $transaction = Transaction::create([
               'tst_user_id' => Auth::id(),
+              'tst_voucher_id' => $data['tst_voucher_id'] ?? null,
               'tst_total_money' => $data['tst_total_money'],
+              'tst_discount' => $data['tst_discount'] ?? 0,
               'tst_name' => $data['tst_name'],
               'tst_email' => $data['tst_email'],
               'tst_phone' => $data['tst_phone'],
@@ -336,6 +471,9 @@ class ShoppingCartController extends Controller
                   $product = Product::find($item->id);
                   $product->pro_pay = $product->pro_pay + 1;
                   $product->pro_amount = $product->pro_amount - $item->qty;
+              }
+              if ($voucher) {
+                  $voucher->increment('vc_used');
               }
           }
           Session::flash('toastr', [

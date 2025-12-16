@@ -16,8 +16,10 @@
         Route::get('comment','UserCommentController@index')->name('get.user.comment'); // commend
         Route::get('comment/delete/{id}','UserCommentController@delete')->name('get.user.comment.delete'); // xoá commend
 
-		Route::post('/process','RechargeOnlineController@processSendData')
-			->name('post.recharge.process'); //  xử lý nạp tiền
+        Route::get('voucher','UserVoucherController@index')->name('get.user.voucher'); // voucher đang chạy
+
+                Route::post('/process','RechargeOnlineController@processSendData')
+                        ->name('post.recharge.process'); //  xử lý nạp tiền
 
 		Route::get('process-success','ProcessRechargeOnlineController@callbackSuccess')
 			->name('get.recharge.success'); // callback khi nạp tiền xong

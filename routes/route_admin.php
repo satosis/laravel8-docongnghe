@@ -127,6 +127,17 @@
             Route::get('delete-image/{id}','AdminProductController@deleteImage')->name('admin.product.delete_image')->middleware('permission:product|full');
         });
 
+        Route::group(['prefix' => 'voucher'], function(){
+            Route::get('','AdminVoucherController@index')->name('admin.voucher.index')->middleware('permission:full');
+            Route::get('create','AdminVoucherController@create')->name('admin.voucher.create')->middleware('permission:full');
+            Route::post('create','AdminVoucherController@store')->middleware('permission:full');
+
+            Route::get('update/{id}','AdminVoucherController@edit')->name('admin.voucher.update')->middleware('permission:full');
+            Route::post('update/{id}','AdminVoucherController@update')->middleware('permission:full');
+
+            Route::get('delete/{id}','AdminVoucherController@delete')->name('admin.voucher.delete')->middleware('permission:full');
+        });
+
         Route::group(['prefix' => 'rating'], function(){
             Route::get('','AdminRatingController@index')->name('admin.rating.index')->middleware('permission:rating|full');
             Route::get('delete/{id}','AdminRatingController@delete')->name('admin.rating.delete')->middleware('permission:rating|full');
