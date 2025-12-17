@@ -1,5 +1,6 @@
 @extends('layouts.app_master_frontend')
 @section('css')
+    <link rel="stylesheet" href="{{ asset('css/cart.min.css') }}">
     <style>
         .payment-success {
             padding: 80px 0;
@@ -109,14 +110,14 @@
 
                 <div class="cta">
                     <a class="btn btn-primary" href="{{ route('get.home') }}">Về trang chủ</a>
-                    <a class="btn btn-outline" href="{{ route('get.track.transaction') }}">Xem tình trạng đơn hàng</a>
+                    <a class="btn btn-outline" href="{{ route('get.track.transaction') }}" style='color:#0f7ae5 !important'>Xem tình trạng đơn hàng</a>
                 </div>
             </div>
         </div>
     </div>
 @stop
 @section('script')
-    <script>
+    <!-- <script>
         setTimeout(function () {
             @if($status)
                 window.location.href = '{{ route('get.home') }}';
@@ -124,5 +125,5 @@
                 window.location.href = '{{ route('get.shopping.list') }}';
             @endif
         }, 3000);
-    </script>
+    </script> -->
 @stop
