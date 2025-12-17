@@ -81,4 +81,6 @@ Route::group(['namespace' => 'Frontend'], function() {
     Route::get('chinh-sach-doi-tra','PageStaticController@getReturnPolicy')->name('get.static.return_policy');
     Route::get('cham-soc-khach-hang','PageStaticController@getCustomerCare')->name('get.static.customer_care');
 
+    Route::get('api/payment/vnpay/callback','ShoppingCartController@callback')->name('payment.vnpay.callback');
+
 });
