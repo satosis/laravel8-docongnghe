@@ -320,6 +320,63 @@ INSERT INTO `events` VALUES (1,'Flash sale laptop & PC','/uploads/1743481925209-
 UNLOCK TABLES;
 
 --
+-- Table structure for table `vouchers`
+--
+
+DROP TABLE IF EXISTS `vouchers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `vouchers` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `vc_name` varchar(255) NOT NULL,
+  `vc_code` varchar(255) NOT NULL,
+  `vc_description` text DEFAULT NULL,
+  `vc_type` tinyint(4) NOT NULL DEFAULT 1,
+  `vc_value` int(11) NOT NULL DEFAULT 0,
+  `vc_max_discount` int(11) DEFAULT NULL,
+  `vc_quantity` int(11) NOT NULL DEFAULT 0,
+  `vc_used` int(11) NOT NULL DEFAULT 0,
+  `vc_status` tinyint(4) NOT NULL DEFAULT 1,
+  `vc_started_at` datetime DEFAULT NULL,
+  `vc_ended_at` datetime DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `vouchers_vc_code_unique` (`vc_code`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `vouchers`
+--
+
+LOCK TABLES `vouchers` WRITE;
+/*!40000 ALTER TABLE `vouchers` DISABLE KEYS */;
+INSERT INTO `vouchers` (`id`, `vc_name`, `vc_code`, `vc_description`, `vc_type`, `vc_value`, `vc_max_discount`, `vc_quantity`, `vc_used`, `vc_status`, `vc_started_at`, `vc_ended_at`, `created_at`, `updated_at`) VALUES
+(1,'Chào hè 5%','SUMMER5','Giảm 5% cho đơn từ 1.000.000đ',1,5,300000,100,0,1,'2025-05-15 00:00:00','2025-06-14 23:59:59','2025-05-14 08:00:00','2025-05-14 08:00:00'),
+(2,'Chào hè 10%','SUMMER10','Giảm 10% tối đa 600.000đ',1,10,600000,120,0,1,'2025-05-16 00:00:00','2025-06-15 23:59:59','2025-05-14 08:05:00','2025-05-14 08:05:00'),
+(3,'Freeship 30K','SHIP30','Giảm 30.000 phí vận chuyển',2,30000,NULL,150,0,1,'2025-05-17 00:00:00','2025-06-10 23:59:59','2025-05-14 08:10:00','2025-05-14 08:10:00'),
+(4,'Laptop ưu đãi 8%','LAPTOP8','Áp dụng cho danh mục laptop',1,8,900000,80,0,1,'2025-05-18 00:00:00','2025-06-12 23:59:59','2025-05-14 08:15:00','2025-05-14 08:15:00'),
+(5,'Phụ kiện -50K','PK50','Giảm 50.000đ phụ kiện',2,50000,NULL,140,0,1,'2025-05-19 00:00:00','2025-06-18 23:59:59','2025-05-14 08:20:00','2025-05-14 08:20:00'),
+(6,'Thanh toán ví 7%','EWALLET7','Giảm 7% khi thanh toán ví điện tử',1,7,500000,90,0,1,'2025-05-20 00:00:00','2025-06-17 23:59:59','2025-05-14 08:25:00','2025-05-14 08:25:00'),
+(7,'Mở rộng bảo hành 60K','CARE60','Tặng 60.000đ gói bảo hành mở rộng',2,60000,NULL,70,0,1,'2025-05-21 00:00:00','2025-06-13 23:59:59','2025-05-14 08:30:00','2025-05-14 08:30:00'),
+(8,'Deal Gaming 12%','GAME12','Áp dụng cho phụ kiện gaming',1,12,750000,85,0,1,'2025-05-22 00:00:00','2025-06-20 23:59:59','2025-05-14 08:35:00','2025-05-14 08:35:00'),
+(9,'Sinh viên -80K','SV80','Ưu đãi sinh viên giảm 80.000đ',2,80000,NULL,110,0,1,'2025-05-23 00:00:00','2025-06-16 23:59:59','2025-05-14 08:40:00','2025-05-14 08:40:00'),
+(10,'Loyalty 6%','LOYAL6','Ưu đãi khách thân thiết',1,6,400000,60,0,1,'2025-05-24 00:00:00','2025-06-18 23:59:59','2025-05-14 08:45:00','2025-05-14 08:45:00'),
+(11,'Flash sale 15%','FLASH15','Số lượng có hạn trong tuần',1,15,700000,40,0,1,'2025-05-25 00:00:00','2025-06-05 23:59:59','2025-05-14 08:50:00','2025-05-14 08:50:00'),
+(12,'Combo phụ kiện -100K','COMBO100','Mua combo phụ kiện giảm thêm 100.000đ',2,100000,NULL,55,0,1,'2025-05-26 00:00:00','2025-06-19 23:59:59','2025-05-14 08:55:00','2025-05-14 08:55:00'),
+(13,'Workstation 9%','WS9','Ưu đãi workstation cao cấp',1,9,1200000,30,0,1,'2025-05-27 00:00:00','2025-06-21 23:59:59','2025-05-14 09:00:00','2025-05-14 09:00:00'),
+(14,'Tai nghe -70K','AUDIO70','Áp dụng cho tai nghe và loa',2,70000,NULL,95,0,1,'2025-05-28 00:00:00','2025-06-22 23:59:59','2025-05-14 09:05:00','2025-05-14 09:05:00'),
+(15,'Màn hình 10%','MONITOR10','Giảm 10% màn hình rời',1,10,1100000,65,0,1,'2025-05-29 00:00:00','2025-06-23 23:59:59','2025-05-14 09:10:00','2025-05-14 09:10:00'),
+(16,'Router -60K','ROUTER60','Giảm 60.000đ cho router WiFi 6',2,60000,NULL,75,0,1,'2025-05-30 00:00:00','2025-06-24 23:59:59','2025-05-14 09:15:00','2025-05-14 09:15:00'),
+(17,'Chuột 12%','MOUSE12','Ưu đãi chuột gaming & văn phòng',1,12,300000,130,0,1,'2025-05-31 00:00:00','2025-06-25 23:59:59','2025-05-14 09:20:00','2025-05-14 09:20:00'),
+(18,'Bàn phím -90K','KEY90','Giảm 90.000đ bàn phím cơ',2,90000,NULL,85,0,1,'2025-06-01 00:00:00','2025-06-26 23:59:59','2025-05-14 09:25:00','2025-05-14 09:25:00'),
+(19,'Ổ cứng 8%','SSD8','Áp dụng cho SSD/HDD',1,8,500000,70,0,1,'2025-06-02 00:00:00','2025-06-27 23:59:59','2025-05-14 09:30:00','2025-05-14 09:30:00'),
+(20,'Phụ kiện học tập -40K','STUDY40','Áp dụng phụ kiện học tập',2,40000,NULL,100,0,1,'2025-06-03 00:00:00','2025-06-28 23:59:59','2025-05-14 09:35:00','2025-05-14 09:35:00');
+/*!40000 ALTER TABLE `vouchers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `failed_jobs`
 --
 
