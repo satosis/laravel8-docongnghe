@@ -27,18 +27,20 @@
                                     <th>Thành tiền</th>
                                 </tr>
                             </thead>
-                        <tbody>
+                            <tbody>
                             @forelse($shopping as $key => $item)
                                 <tr>
                                     <td>
-                                        <a href="{{ route('get.product.detail',\Str::slug($item->name).'-'.$item->id) }}"
-                                            title="{{ $item->name }}" class="avatar image contain">
+                                        <a href="{{ route('get.product.detail', \Str::slug($item->name).'-'.$item->id) }}"
+                                           title="{{ $item->name }}" class="avatar image contain">
                                             <img alt="" src="{{ pare_url_file($item->options->image) }}" class="lazyload">
                                         </a>
                                     </td>
                                     <td>
-                                        <div style="" class="name-product">
-                                            <a href="{{ route('get.product.detail',\Str::slug($item->name).'-'.$item->id) }}"><strong>{{ $item->name }}</strong></a>
+                                        <div class="name-product">
+                                            <a href="{{ route('get.product.detail', \Str::slug($item->name).'-'.$item->id) }}">
+                                                <strong>{{ $item->name }}</strong>
+                                            </a>
                                             <p>Kích cỡ: {{ isset($item->options['size']) ? $size[$item->options['size']] : 'S' }}</p>
                                         </div>
                                     </td>
@@ -118,11 +120,15 @@
 @section('script')
     <script src="{{ asset('js/cart.js') }}" type="text/javascript"></script>
     <script>
-        var voucherInfo = @json($totals['voucher'] ? [
-            'type' => $totals['voucher']->vc_type,
-            'value' => $totals['voucher']->vc_value,
-            'max' => $totals['voucher']->vc_max_discount,
-        ] : null);
+        @php
+            $voucherInfo = $totals['voucher'] ? [
+                'type'  => $totals['voucher']->vc_type,
+                'value' => $totals['voucher']->vc_value,
+                'max'   => $totals['voucher']->vc_max_discount,
+            ] : null;
+        @endphp
+
+        var voucherInfo = @json($voucherInfo);
 
         function formatNumber(number) {
             return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
