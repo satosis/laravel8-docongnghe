@@ -117,7 +117,7 @@
     </div>
 @stop
 @section('script')
-    <!-- <script>
+    <script>
         setTimeout(function () {
             @if($status)
                 window.location.href = '{{ route('get.home') }}';
@@ -125,5 +125,5 @@
                 window.location.href = '{{ route('get.shopping.list') }}';
             @endif
         }, 3000);
-    </script> -->
+    </script>
 @stop
