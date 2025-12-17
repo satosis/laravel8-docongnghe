@@ -8,6 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" sizes="32x32" type="image/png" href="{{ asset('ico.png') }}" />
     @yield('css')
+    <link rel="stylesheet" href="{{ asset('css/tech-theme.css') }}">
 
     {{-- Thông báo --}}
     @if(session('toastr'))
@@ -51,8 +52,9 @@
 </div>
 @include('frontend.components.footer')
 <script>
-	var DEVICE = '{{  device_agent() }}'
+        var DEVICE = '{{  device_agent() }}'
 </script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script src="{{ asset('js/cart.js') }}" type="text/javascript"></script>
 
 @yield('script')
