@@ -1,4 +1,4 @@
--- MySQL dump 10.13  Distrib 8.0.40, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: data_website
 -- ------------------------------------------------------
@@ -320,63 +320,6 @@ INSERT INTO `events` VALUES (1,'Flash sale laptop & PC','/uploads/1743481925209-
 UNLOCK TABLES;
 
 --
--- Table structure for table `vouchers`
---
-
-DROP TABLE IF EXISTS `vouchers`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `vouchers` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `vc_name` varchar(255) NOT NULL,
-  `vc_code` varchar(255) NOT NULL,
-  `vc_description` text DEFAULT NULL,
-  `vc_type` tinyint(4) NOT NULL DEFAULT 1,
-  `vc_value` int(11) NOT NULL DEFAULT 0,
-  `vc_max_discount` int(11) DEFAULT NULL,
-  `vc_quantity` int(11) NOT NULL DEFAULT 0,
-  `vc_used` int(11) NOT NULL DEFAULT 0,
-  `vc_status` tinyint(4) NOT NULL DEFAULT 1,
-  `vc_started_at` datetime DEFAULT NULL,
-  `vc_ended_at` datetime DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `vouchers_vc_code_unique` (`vc_code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `vouchers`
---
-
-LOCK TABLES `vouchers` WRITE;
-/*!40000 ALTER TABLE `vouchers` DISABLE KEYS */;
-INSERT INTO `vouchers` (`id`, `vc_name`, `vc_code`, `vc_description`, `vc_type`, `vc_value`, `vc_max_discount`, `vc_quantity`, `vc_used`, `vc_status`, `vc_started_at`, `vc_ended_at`, `created_at`, `updated_at`) VALUES
-(1,'Chào hè 5%','SUMMER5','Giảm 5% cho đơn từ 1.000.000đ',1,5,300000,100,0,1,'2025-05-15 00:00:00','2025-06-14 23:59:59','2025-05-14 08:00:00','2025-05-14 08:00:00'),
-(2,'Chào hè 10%','SUMMER10','Giảm 10% tối đa 600.000đ',1,10,600000,120,0,1,'2025-05-16 00:00:00','2025-06-15 23:59:59','2025-05-14 08:05:00','2025-05-14 08:05:00'),
-(3,'Freeship 30K','SHIP30','Giảm 30.000 phí vận chuyển',2,30000,NULL,150,0,1,'2025-05-17 00:00:00','2025-06-10 23:59:59','2025-05-14 08:10:00','2025-05-14 08:10:00'),
-(4,'Laptop ưu đãi 8%','LAPTOP8','Áp dụng cho danh mục laptop',1,8,900000,80,0,1,'2025-05-18 00:00:00','2025-06-12 23:59:59','2025-05-14 08:15:00','2025-05-14 08:15:00'),
-(5,'Phụ kiện -50K','PK50','Giảm 50.000đ phụ kiện',2,50000,NULL,140,0,1,'2025-05-19 00:00:00','2025-06-18 23:59:59','2025-05-14 08:20:00','2025-05-14 08:20:00'),
-(6,'Thanh toán ví 7%','EWALLET7','Giảm 7% khi thanh toán ví điện tử',1,7,500000,90,0,1,'2025-05-20 00:00:00','2025-06-17 23:59:59','2025-05-14 08:25:00','2025-05-14 08:25:00'),
-(7,'Mở rộng bảo hành 60K','CARE60','Tặng 60.000đ gói bảo hành mở rộng',2,60000,NULL,70,0,1,'2025-05-21 00:00:00','2025-06-13 23:59:59','2025-05-14 08:30:00','2025-05-14 08:30:00'),
-(8,'Deal Gaming 12%','GAME12','Áp dụng cho phụ kiện gaming',1,12,750000,85,0,1,'2025-05-22 00:00:00','2025-06-20 23:59:59','2025-05-14 08:35:00','2025-05-14 08:35:00'),
-(9,'Sinh viên -80K','SV80','Ưu đãi sinh viên giảm 80.000đ',2,80000,NULL,110,0,1,'2025-05-23 00:00:00','2025-06-16 23:59:59','2025-05-14 08:40:00','2025-05-14 08:40:00'),
-(10,'Loyalty 6%','LOYAL6','Ưu đãi khách thân thiết',1,6,400000,60,0,1,'2025-05-24 00:00:00','2025-06-18 23:59:59','2025-05-14 08:45:00','2025-05-14 08:45:00'),
-(11,'Flash sale 15%','FLASH15','Số lượng có hạn trong tuần',1,15,700000,40,0,1,'2025-05-25 00:00:00','2025-06-05 23:59:59','2025-05-14 08:50:00','2025-05-14 08:50:00'),
-(12,'Combo phụ kiện -100K','COMBO100','Mua combo phụ kiện giảm thêm 100.000đ',2,100000,NULL,55,0,1,'2025-05-26 00:00:00','2025-06-19 23:59:59','2025-05-14 08:55:00','2025-05-14 08:55:00'),
-(13,'Workstation 9%','WS9','Ưu đãi workstation cao cấp',1,9,1200000,30,0,1,'2025-05-27 00:00:00','2025-06-21 23:59:59','2025-05-14 09:00:00','2025-05-14 09:00:00'),
-(14,'Tai nghe -70K','AUDIO70','Áp dụng cho tai nghe và loa',2,70000,NULL,95,0,1,'2025-05-28 00:00:00','2025-06-22 23:59:59','2025-05-14 09:05:00','2025-05-14 09:05:00'),
-(15,'Màn hình 10%','MONITOR10','Giảm 10% màn hình rời',1,10,1100000,65,0,1,'2025-05-29 00:00:00','2025-06-23 23:59:59','2025-05-14 09:10:00','2025-05-14 09:10:00'),
-(16,'Router -60K','ROUTER60','Giảm 60.000đ cho router WiFi 6',2,60000,NULL,75,0,1,'2025-05-30 00:00:00','2025-06-24 23:59:59','2025-05-14 09:15:00','2025-05-14 09:15:00'),
-(17,'Chuột 12%','MOUSE12','Ưu đãi chuột gaming & văn phòng',1,12,300000,130,0,1,'2025-05-31 00:00:00','2025-06-25 23:59:59','2025-05-14 09:20:00','2025-05-14 09:20:00'),
-(18,'Bàn phím -90K','KEY90','Giảm 90.000đ bàn phím cơ',2,90000,NULL,85,0,1,'2025-06-01 00:00:00','2025-06-26 23:59:59','2025-05-14 09:25:00','2025-05-14 09:25:00'),
-(19,'Ổ cứng 8%','SSD8','Áp dụng cho SSD/HDD',1,8,500000,70,0,1,'2025-06-02 00:00:00','2025-06-27 23:59:59','2025-05-14 09:30:00','2025-05-14 09:30:00'),
-(20,'Phụ kiện học tập -40K','STUDY40','Áp dụng phụ kiện học tập',2,40000,NULL,100,0,1,'2025-06-03 00:00:00','2025-06-28 23:59:59','2025-05-14 09:35:00','2025-05-14 09:35:00');
-/*!40000 ALTER TABLE `vouchers` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `failed_jobs`
 --
 
@@ -514,7 +457,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(191) NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -523,7 +466,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2019_08_19_000000_create_failed_jobs_table',1),(3,'2020_02_02_041429_create_categories_table',1),(4,'2020_02_02_155318_create_keywords_table',1),(5,'2020_02_03_145303_create_products_table',1),(6,'2020_02_06_165057_create_attributes_table',1),(7,'2020_02_06_184708_create_products_attributes_table',1),(8,'2020_02_08_005029_add_multiple_column_attribute_in_table_products',1),(9,'2020_02_09_073958_create_transactions_table',1),(10,'2020_02_09_074025_create_orders_table',1),(11,'2020_02_09_133309_create_products_keywords_table',1),(12,'2020_02_09_155308_create_admins_table',1),(13,'2020_02_09_180519_create_menus_table',1),(14,'2020_02_09_180620_create_articles_table',1),(15,'2020_02_12_100000_create_password_resets_table',1),(16,'2020_02_13_154148_alter_column_pro_number_in_table_product',1),(17,'2020_02_13_171036_create_slides_table',1),(18,'2020_02_14_121248_alter_column_a_position_in_table_articles',1),(19,'2020_02_15_053225_create_user_favourite_table',1),(20,'2020_02_15_191555_create_ratings_table',1),(21,'2020_02_17_162605_create_events_table',1),(22,'2020_02_18_152103_create_product_images_table',1),(23,'2020_02_24_222836_create_social_accounts_table',1),(24,'2020_03_08_104810_create_statics_table',1),(25,'2020_03_08_213403_alter_column_pro_age_review_in_table_product',1),(26,'2020_03_12_205704_create_contacts_table',1),(27,'2020_03_17_183239_create_comments_table',1),(28,'2020_03_22_003200_alter_column_spam_comment_ratings_in_table_users',1),(29,'2020_03_23_223714_alter_column_admin_in_table_admin',1),(30,'2020_03_24_201555_alter_column_c_parent_id_in_table_categories',1),(31,'2020_03_25_214331_create_list_table_system_pay_table',1),(32,'2020_03_27_181534_alter_column_type_pay_in_table_transaction',1),(33,'2020_04_14_164245_create_supplieres_table',1),(34,'2020_04_15_003305_alter_column_pro_supplier_id_in_table_products',1),(35,'2020_04_16_234410_after_column_tst_admin_id_in_table_transaction',1),(37,'2020_04_29_104806_alter_column_pro_expiration_date_in_table_products',2),(38,'2020_04_29_112931_create_invoice_entered_in_tables',3),(39,'2020_06_17_192357_create_product_invoice_entered_table',4),(40,'2020_06_21_112319_create_permission_tables',5),(41,'2020_06_21_205241_create_activity_log_table',6);
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2019_08_19_000000_create_failed_jobs_table',1),(3,'2020_02_02_041429_create_categories_table',1),(4,'2020_02_02_155318_create_keywords_table',1),(5,'2020_02_03_145303_create_products_table',1),(6,'2020_02_06_165057_create_attributes_table',1),(7,'2020_02_06_184708_create_products_attributes_table',1),(8,'2020_02_08_005029_add_multiple_column_attribute_in_table_products',1),(9,'2020_02_09_073958_create_transactions_table',1),(10,'2020_02_09_074025_create_orders_table',1),(11,'2020_02_09_133309_create_products_keywords_table',1),(12,'2020_02_09_155308_create_admins_table',1),(13,'2020_02_09_180519_create_menus_table',1),(14,'2020_02_09_180620_create_articles_table',1),(15,'2020_02_12_100000_create_password_resets_table',1),(16,'2020_02_13_154148_alter_column_pro_number_in_table_product',1),(17,'2020_02_13_171036_create_slides_table',1),(18,'2020_02_14_121248_alter_column_a_position_in_table_articles',1),(19,'2020_02_15_053225_create_user_favourite_table',1),(20,'2020_02_15_191555_create_ratings_table',1),(21,'2020_02_17_162605_create_events_table',1),(22,'2020_02_18_152103_create_product_images_table',1),(23,'2020_02_24_222836_create_social_accounts_table',1),(24,'2020_03_08_104810_create_statics_table',1),(25,'2020_03_08_213403_alter_column_pro_age_review_in_table_product',1),(26,'2020_03_12_205704_create_contacts_table',1),(27,'2020_03_17_183239_create_comments_table',1),(28,'2020_03_22_003200_alter_column_spam_comment_ratings_in_table_users',1),(29,'2020_03_23_223714_alter_column_admin_in_table_admin',1),(30,'2020_03_24_201555_alter_column_c_parent_id_in_table_categories',1),(31,'2020_03_25_214331_create_list_table_system_pay_table',1),(32,'2020_03_27_181534_alter_column_type_pay_in_table_transaction',1),(33,'2020_04_14_164245_create_supplieres_table',1),(34,'2020_04_15_003305_alter_column_pro_supplier_id_in_table_products',1),(35,'2020_04_16_234410_after_column_tst_admin_id_in_table_transaction',1),(37,'2020_04_29_104806_alter_column_pro_expiration_date_in_table_products',2),(38,'2020_04_29_112931_create_invoice_entered_in_tables',3),(39,'2020_06_17_192357_create_product_invoice_entered_table',4),(40,'2020_06_21_112319_create_permission_tables',5),(41,'2020_06_21_205241_create_activity_log_table',6),(42,'2024_05_28_000000_create_vouchers_table',7),(43,'2024_05_28_000100_add_voucher_columns_to_transactions_table',7);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1161,8 +1104,10 @@ DROP TABLE IF EXISTS `transactions`;
 CREATE TABLE `transactions` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `tst_user_id` bigint(11) unsigned NOT NULL DEFAULT 0,
+  `tst_voucher_id` bigint(20) unsigned DEFAULT NULL,
   `tst_admin_id` int(11) NOT NULL DEFAULT 0,
   `tst_total_money` int(11) NOT NULL DEFAULT 0,
+  `tst_discount` int(11) NOT NULL DEFAULT 0,
   `tst_name` varchar(191) DEFAULT NULL,
   `tst_email` varchar(191) DEFAULT NULL,
   `tst_phone` varchar(191) DEFAULT NULL,
@@ -1185,7 +1130,7 @@ CREATE TABLE `transactions` (
 
 LOCK TABLES `transactions` WRITE;
 /*!40000 ALTER TABLE `transactions` DISABLE KEYS */;
-INSERT INTO `transactions` VALUES (1,2,0,231760,'Support','support@gmail.com','0986420994','Nghệ AN',NULL,1,1,'2024-06-21 02:06:31',NULL),(2,2,0,0,'Support','support@gmail.com','0986420994','Nghệ AN',NULL,1,2,'2024-06-07 08:03:48',NULL),(3,2,0,440000,'Support','support@gmail.com','0986420994','Nghệ AN',NULL,1,2,'2024-06-07 09:42:21',NULL),(4,2,0,504400,'Support','support@gmail.com','0986420994','Nghệ AN',NULL,1,2,'2024-06-03 09:45:50',NULL),(5,2,1,237600,'Support','support@gmail.com','0986420994','Nghệ AN',NULL,3,1,'2024-06-08 15:58:19','2020-06-08 15:58:35'),(6,2,1,23520,'Support','support@gmail.com','0986420994','Hai Bà Trưng Hà Nội',NULL,3,1,'2024-06-15 11:48:55','2020-06-15 11:49:04'),(7,2,1,16000,'Support','support@gmail.com','0986420994','Hai Bà Trưng Hà Nội',NULL,3,1,'2024-06-18 12:17:30','2020-06-18 12:26:50'),(8,1,0,440000,'Khách hàng 1','khachhang1@gmail.com','01255878995885','213132',NULL,-1,1,'2024-04-21 06:31:26','2024-04-21 06:35:02');
+INSERT INTO `transactions` VALUES (1,2,NULL,0,231760,0,'Support','support@gmail.com','0986420994','Nghệ AN',NULL,1,1,'2024-06-21 02:06:31',NULL),(2,2,NULL,0,0,0,'Support','support@gmail.com','0986420994','Nghệ AN',NULL,1,2,'2024-06-07 08:03:48',NULL),(3,2,NULL,0,440000,0,'Support','support@gmail.com','0986420994','Nghệ AN',NULL,1,2,'2024-06-07 09:42:21',NULL),(4,2,NULL,0,504400,0,'Support','support@gmail.com','0986420994','Nghệ AN',NULL,1,2,'2024-06-03 09:45:50',NULL),(5,2,NULL,1,237600,0,'Support','support@gmail.com','0986420994','Nghệ AN',NULL,3,1,'2024-06-08 15:58:19','2020-06-08 15:58:35'),(6,2,NULL,1,23520,0,'Support','support@gmail.com','0986420994','Hai Bà Trưng Hà Nội',NULL,3,1,'2024-06-15 11:48:55','2020-06-15 11:49:04'),(7,2,NULL,1,16000,0,'Support','support@gmail.com','0986420994','Hai Bà Trưng Hà Nội',NULL,3,1,'2024-06-18 12:17:30','2020-06-18 12:26:50'),(8,1,NULL,0,440000,0,'Khách hàng 1','khachhang1@gmail.com','01255878995885','213132',NULL,-1,1,'2024-04-21 06:31:26','2024-04-21 06:35:02');
 /*!40000 ALTER TABLE `transactions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1281,6 +1226,43 @@ LOCK TABLES `videos` WRITE;
 INSERT INTO `videos` VALUES (4,'Mãi mãi một tình yêu',6,NULL);
 /*!40000 ALTER TABLE `videos` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `vouchers`
+--
+
+DROP TABLE IF EXISTS `vouchers`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `vouchers` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `vc_name` varchar(191) NOT NULL,
+  `vc_code` varchar(191) NOT NULL,
+  `vc_description` text DEFAULT NULL,
+  `vc_type` tinyint(4) NOT NULL DEFAULT 1,
+  `vc_value` int(11) NOT NULL DEFAULT 0,
+  `vc_max_discount` int(11) DEFAULT NULL,
+  `vc_quantity` int(11) NOT NULL DEFAULT 0,
+  `vc_used` int(11) NOT NULL DEFAULT 0,
+  `vc_status` tinyint(4) NOT NULL DEFAULT 1,
+  `vc_started_at` datetime DEFAULT NULL,
+  `vc_ended_at` datetime DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `vouchers_vc_code_unique` (`vc_code`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `vouchers`
+--
+
+LOCK TABLES `vouchers` WRITE;
+/*!40000 ALTER TABLE `vouchers` DISABLE KEYS */;
+INSERT INTO `vouchers` VALUES (1,'Chào hè 5%','SUMMER5','Giảm 5% cho đơn từ 1.000.000đ',1,5,300000,100,0,1,'2025-05-15 00:00:00','2025-06-14 23:59:59','2025-05-14 01:00:00','2025-05-14 01:00:00'),(2,'Chào hè 10%','SUMMER10','Giảm 10% tối đa 600.000đ',1,10,600000,120,0,1,'2025-05-16 00:00:00','2025-06-15 23:59:59','2025-05-14 01:05:00','2025-05-14 01:05:00'),(3,'Freeship 30K','SHIP30','Giảm 30.000 phí vận chuyển',2,30000,NULL,150,0,1,'2025-05-17 00:00:00','2025-06-10 23:59:59','2025-05-14 01:10:00','2025-05-14 01:10:00'),(4,'Laptop ưu đãi 8%','LAPTOP8','Áp dụng cho danh mục laptop',1,8,900000,80,0,1,'2025-05-18 00:00:00','2025-06-12 23:59:59','2025-05-14 01:15:00','2025-05-14 01:15:00'),(5,'Phụ kiện -50K','PK50','Giảm 50.000đ phụ kiện',2,50000,NULL,140,0,1,'2025-05-19 00:00:00','2025-06-18 23:59:59','2025-05-14 01:20:00','2025-05-14 01:20:00'),(6,'Thanh toán ví 7%','EWALLET7','Giảm 7% khi thanh toán ví điện tử',1,7,500000,90,0,1,'2025-05-20 00:00:00','2025-06-17 23:59:59','2025-05-14 01:25:00','2025-05-14 01:25:00'),(7,'Mở rộng bảo hành 60K','CARE60','Tặng 60.000đ gói bảo hành mở rộng',2,60000,NULL,70,0,1,'2025-05-21 00:00:00','2025-06-13 23:59:59','2025-05-14 01:30:00','2025-05-14 01:30:00'),(8,'Deal Gaming 12%','GAME12','Áp dụng cho phụ kiện gaming',1,12,750000,85,0,1,'2025-05-22 00:00:00','2025-06-20 23:59:59','2025-05-14 01:35:00','2025-05-14 01:35:00'),(9,'Sinh viên -80K','SV80','Ưu đãi sinh viên giảm 80.000đ',2,80000,NULL,110,0,1,'2025-05-23 00:00:00','2025-06-16 23:59:59','2025-05-14 01:40:00','2025-05-14 01:40:00'),(10,'Loyalty 6%','LOYAL6','Ưu đãi khách thân thiết',1,6,400000,60,0,1,'2025-05-24 00:00:00','2025-06-18 23:59:59','2025-05-14 01:45:00','2025-05-14 01:45:00'),(11,'Flash sale 15%','FLASH15','Số lượng có hạn trong tuần',1,15,700000,40,0,1,'2025-05-25 00:00:00','2025-06-05 23:59:59','2025-05-14 01:50:00','2025-05-14 01:50:00'),(12,'Combo phụ kiện -100K','COMBO100','Mua combo phụ kiện giảm thêm 100.000đ',2,100000,NULL,55,0,1,'2025-05-26 00:00:00','2025-06-19 23:59:59','2025-05-14 01:55:00','2025-05-14 01:55:00'),(13,'Workstation 9%','WS9','Ưu đãi workstation cao cấp',1,9,1200000,30,0,1,'2025-05-27 00:00:00','2025-06-21 23:59:59','2025-05-14 02:00:00','2025-05-14 02:00:00'),(14,'Tai nghe -70K','AUDIO70','Áp dụng cho tai nghe và loa',2,70000,NULL,95,0,1,'2025-05-28 00:00:00','2025-06-22 23:59:59','2025-05-14 02:05:00','2025-05-14 02:05:00'),(15,'Màn hình 10%','MONITOR10','Giảm 10% màn hình rời',1,10,1100000,65,0,1,'2025-05-29 00:00:00','2025-06-23 23:59:59','2025-05-14 02:10:00','2025-05-14 02:10:00'),(16,'Router -60K','ROUTER60','Giảm 60.000đ cho router WiFi 6',2,60000,NULL,75,0,1,'2025-05-30 00:00:00','2025-06-24 23:59:59','2025-05-14 02:15:00','2025-05-14 02:15:00'),(17,'Chuột 12%','MOUSE12','Ưu đãi chuột gaming & văn phòng',1,12,300000,130,0,1,'2025-05-31 00:00:00','2025-06-25 23:59:59','2025-05-14 02:20:00','2025-05-14 02:20:00'),(18,'Bàn phím -90K','KEY90','Giảm 90.000đ bàn phím cơ',2,90000,NULL,85,0,1,'2025-06-01 00:00:00','2025-06-26 23:59:59','2025-05-14 02:25:00','2025-05-14 02:25:00'),(19,'Ổ cứng 8%','SSD8','Áp dụng cho SSD/HDD',1,8,500000,70,0,1,'2025-06-02 00:00:00','2025-06-27 23:59:59','2025-05-14 02:30:00','2025-05-14 02:30:00'),(20,'Phụ kiện học tập -40K','STUDY40','Áp dụng phụ kiện học tập',2,40000,NULL,100,0,1,'2025-06-03 00:00:00','2025-06-28 23:59:59','2025-05-14 02:35:00','2025-05-14 02:35:00');
+/*!40000 ALTER TABLE `vouchers` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -1291,4 +1273,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-12-06 21:08:06
+-- Dump completed on 2025-12-17 15:21:50
