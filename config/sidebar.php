@@ -98,14 +98,29 @@ return [
         'name' => 'Đơn hàng',
         'list-check' => ['transaction'],
         'icon' => 'fa-shopping-cart',
-		'level'  => [1,2],
+                'level'  => [1,2],
         'sub'  => [
             [
                 'name'  => 'Danh sách',
                 'namespace' => 'transaction',
                 'route' => 'admin.transaction.index',
                 'icon'  => 'fa-opencart',
-				'level'  => [1,2],
+                                'level'  => [1,2],
+            ]
+        ]
+    ],
+    [
+        'name' => 'Voucher',
+        'list-check' => ['voucher'],
+        'icon' => 'fa-ticket',
+        'level' => [1,2],
+        'sub' => [
+            [
+                'name' => 'Quản lý voucher',
+                'namespace' => 'voucher',
+                'route' => 'admin.voucher.index',
+                'icon' => 'fa-ticket',
+                'level' => [1,2],
             ]
         ]
     ],

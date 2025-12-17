@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="Giao diện cửa hàng đồ công nghệ">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#0f7ae5"/>
+      <stop offset="1" stop-color="#4cc3ff"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#e8f3ff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" rx="32"/>
+  <rect x="80" y="100" width="1040" height="430" rx="26" fill="#ffffff" opacity="0.12"/>
+  <rect x="120" y="140" width="960" height="350" rx="22" fill="url(#card)" stroke="#e1edff"/>
+
+  <text x="160" y="210" font-family="Arial,Helvetica,sans-serif" font-size="42" font-weight="700" fill="#0f265c">Đồ Công Nghệ</text>
+  <text x="160" y="250" font-family="Arial,Helvetica,sans-serif" font-size="22" fill="#275083">Laptop, phụ kiện và giải pháp công nghệ cho sinh viên &amp; người đi làm.</text>
+
+  <g transform="translate(160 300)">
+    <rect width="260" height="160" rx="14" fill="#0f7ae5" opacity="0.1"/>
+    <text x="26" y="52" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="700" fill="#0f265c">Giỏ hàng &amp; Thanh toán</text>
+    <text x="26" y="85" font-family="Arial,Helvetica,sans-serif" font-size="16" fill="#275083">Tách riêng các bước mua hàng</text>
+    <text x="26" y="115" font-family="Arial,Helvetica,sans-serif" font-size="16" fill="#275083">Thanh toán online, VNPAY</text>
+  </g>
+
+  <g transform="translate(470 300)">
+    <rect width="260" height="160" rx="14" fill="#0f7ae5" opacity="0.1"/>
+    <text x="26" y="52" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="700" fill="#0f265c">Quản lý Voucher</text>
+    <text x="26" y="85" font-family="Arial,Helvetica,sans-serif" font-size="16" fill="#275083">Mã giảm giá cho admin &amp; user</text>
+    <text x="26" y="115" font-family="Arial,Helvetica,sans-serif" font-size="16" fill="#275083">Theo dõi thời hạn &amp; lượt dùng</text>
+  </g>
+
+  <g transform="translate(780 300)">
+    <rect width="260" height="160" rx="14" fill="#0f7ae5" opacity="0.1"/>
+    <text x="26" y="52" font-family="Arial,Helvetica,sans-serif" font-size="20" font-weight="700" fill="#0f265c">Tài khoản &amp; đánh giá</text>
+    <text x="26" y="85" font-family="Arial,Helvetica,sans-serif" font-size="16" fill="#275083">Đăng ký, đăng nhập, lịch sử</text>
+    <text x="26" y="115" font-family="Arial,Helvetica,sans-serif" font-size="16" fill="#275083">Đánh giá sản phẩm yêu thích</text>
+  </g>
+
+  <circle cx="1020" cy="200" r="12" fill="#0f7ae5"/>
+  <circle cx="1050" cy="200" r="12" fill="#2ecc71"/>
+  <circle cx="1080" cy="200" r="12" fill="#f7c948"/>
+</svg>
