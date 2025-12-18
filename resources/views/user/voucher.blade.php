@@ -1,4 +1,9 @@
 @extends('layouts.app_master_user')
+@section('css')
+    <style>
+        <?php $style = file_get_contents('css/user.min.css');echo $style;?>
+    </style>
+@stop
 @section('content')
     <h2 class="title-user">Danh sách voucher đang diễn ra</h2>
     <div class="box">
